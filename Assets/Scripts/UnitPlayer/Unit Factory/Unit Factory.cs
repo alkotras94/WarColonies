@@ -6,7 +6,6 @@ public class UnitFactory : MonoBehaviour
 {
     [SerializeField] private Unit _template;
     [SerializeField] private Transform _transform;
-    [SerializeField] private ResourcesFortrres _resourcesFortrres;
     [SerializeField] private UnitData _unitData;
 
     public List<Unit> Spawn(int count)
@@ -21,20 +20,13 @@ public class UnitFactory : MonoBehaviour
     public Unit Spawn()
     {
         Unit unit = Instantiate(_template,_transform);
-        unit.Initialize(_resourcesFortrres, _unitData);
+        unit.Initialize(_unitData);
         return unit;
     }
 
-    public void CanSpawn(int price)
+    public void CanSpawn()
     {
-        if (price >= _unitData.Price)
-        {
             Spawn();
-            _resourcesFortrres.WoodModel.Spend(price);
-        }
-        else
-        {
-            Debug.Log("Недостаточно денег");
-        }
+            //_resourcesFortrres.WoodModel.Spend(_unitData.Price);
     }
 }

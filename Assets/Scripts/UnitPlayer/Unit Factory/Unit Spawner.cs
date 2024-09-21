@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +5,7 @@ public class UnitSpawner : MonoBehaviour
 {
     [SerializeField] private UnitFactory _unitfactory;
     [SerializeField] private Button _button;
-    [SerializeField] private ResourcesFortrres _resourcesFortrres;
+    //[SerializeField] private ResourcesFortrres _resourcesFortrres;
 
     private void OnEnable()
     {
@@ -21,6 +19,6 @@ public class UnitSpawner : MonoBehaviour
 
     private void TrySpawn()
     {
-        _unitfactory.CanSpawn(_resourcesFortrres.WoodModel.Resours);
+        _unitfactory.CanSpawn();
     }
 }

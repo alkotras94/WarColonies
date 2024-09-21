@@ -5,12 +5,10 @@ using UnityEngine;
 
 public class UnitStateMachine : MonoBehaviour
 {
-    [SerializeField] private ManagementTransition _managementTransition;
-
     private List<State> _states;
     private State _currentState;
 
-    public void Initialize(Movement movement, Health health)
+    public void Initialize(Movement movement, Health health, ManagementTransition managementTransition, InitTransition initTransition)
     {
         if (movement == null)
             throw new NullReferenceException();
@@ -20,13 +18,17 @@ public class UnitStateMachine : MonoBehaviour
 
         _states = new List<State>()
         {
+            new InitState(initTransition),
             new WaitingState(),
             new MoveState(movement, this),
-            new AttackState(health),
-            new CollectionResourcesState(_managementTransition)
+            new CollectionResourcesState(managementTransition)
         };
     }
 
+    public void Init()
+    {
+        ChangeState<InitState>(null);
+    }
     public void Wait()
     {
         ChangeState<WaitingState>(null);
@@ -35,11 +37,6 @@ public class UnitStateMachine : MonoBehaviour
     public void Move(Hit hitData)
     {
         ChangeState<MoveState>(hitData);
-    }
-
-    public void AttackState(Hit hitData)
-    {
-        ChangeState<AttackState>(hitData);
     }
 
     public void CollectingResources(Hit hitData)

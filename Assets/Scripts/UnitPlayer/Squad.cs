@@ -14,7 +14,7 @@ public class Squad
 
         foreach (var unit in _selectedUnitRtsList)
         {
-            unit.Diselect();
+            //unit.Diselect();
         }
 
         _selectedUnitRtsList.Clear();
@@ -24,7 +24,7 @@ public class Squad
             if (units == null)
                 throw new NullReferenceException();
 
-            unit.Select();
+            //unit.Select();
             _selectedUnitRtsList.Add(unit);
         }
     }
@@ -35,7 +35,7 @@ public class Squad
 
         for (int i = 0; i < _selectedUnitRtsList.Count; i++)
         {
-            _selectedUnitRtsList[i].AddHit(points[i]);
+            //_selectedUnitRtsList[i].AddHit(points[i]);
         }
     }
 

@@ -1,32 +1,24 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Movement), typeof(UnitStateMachine))]
 public class Unit : MonoBehaviour
 {
-    [SerializeField] private HealthBar _healthBar;
-    [SerializeField] private GameObject _selectedGameObject;
-    [SerializeField] private UnitStateMachine _stateMachine;
-    [SerializeField] private Movement _movement;
     [SerializeField] private ManagementTransition _managementTransition;
+    [SerializeField] private InitTransition _initTransition;
+    private UnitStateMachine _stateMachine;
+    private Movement _movement;
 
     private Health _health;
 
-    public void Initialize(ResourcesFortrres resourcesFortrres, UnitData unitData)
+    public void Initialize(UnitData unitData)
     {
         _health = new Health(unitData.MaxHealth);
-        _healthBar.Initialize(_health);
-        Enable();
-        _stateMachine.Initialize(_movement, _health);
-        _managementTransition.Initialize(resourcesFortrres);
-        Diselect();
+        _stateMachine = GetComponent<UnitStateMachine>();
+        _movement = GetComponent<Movement>();
+        _stateMachine.Initialize(_movement, _health, _managementTransition, _initTransition);
+        Vector2 firstPoint = new Vector2(ServiceLocator.Instance.ReceptionFirstPoint.position.x, ServiceLocator.Instance.ReceptionFirstPoint.position.y);
+        AddHit(firstPoint);
     }
-
-    private void Enable() => _healthBar.Enable();
-
-    private void OnDisable() => _healthBar.Disable();
-
-    public void Select() => _selectedGameObject.SetActive(true);
-
-    public void Diselect() => _selectedGameObject.SetActive(false);
 
     public void AddHit(Vector2 target)
     {
