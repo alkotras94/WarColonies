@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -15,9 +14,9 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject())
         {
-            TargetPoint();
+            Raycast();
         }
     }
 
@@ -27,4 +26,18 @@ public class PlayerInput : MonoBehaviour
         Hit hit = new Hit(TargetPosition, null);
         _player.TransferStateMachine(hit);
     }
+
+    private void Raycast()
+    {
+        Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D raycastHit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+
+        if (raycastHit.collider.TryGetComponent(out IHitble hitble))
+        {
+            TargetPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
+            Hit hit = new Hit(TargetPosition, null);
+            _player.TransferStateMachine(hit);
+        }
+    }
 }
+

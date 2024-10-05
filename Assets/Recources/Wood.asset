@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Wood
   m_EditorClassIdentifier: 
   <TimeToCollect>k__BackingField: 1
-  <CountResources>k__BackingField: 260
+  <CountResources>k__BackingField: 1600
+  <NameResourc>k__BackingField: "\u0414\u0435\u0440\u0435\u0432\u043E"
+  <SpriteResourc>k__BackingField: {fileID: 21300000, guid: 5df82d08621b28c4081a3f1109294c54, type: 3}

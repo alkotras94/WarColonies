@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Stone
   m_EditorClassIdentifier: 
   <TimeToCollect>k__BackingField: 5
-  <CountResources>k__BackingField: 150
+  <CountResources>k__BackingField: 1400
+  <NameResourc>k__BackingField: "\u041A\u0430\u043C\u0435\u043D\u044C"
+  <SpriteResourc>k__BackingField: {fileID: 21300000, guid: 3a1c517977dfcb3448cb4c1a7fa0e764, type: 3}
