@@ -24,7 +24,7 @@ public class InitTransition : MonoBehaviour
         Vector2 vector = new Vector2(ServiceLocator.Instance.PointFreeWorkers.position.x, ServiceLocator.Instance.PointFreeWorkers.position.y);
         Hit hitData = new Hit(vector, null);
 
-        yield return new WaitForSeconds(_receiverDetector.Time—onsumptionFoof);
+        yield return new WaitForSeconds(_receiverDetector.Time);
 
         _stateMachine.Move(hitData);
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ReceiverDetector : MonoBehaviour
 {
-    [field: SerializeField] public int Time—onsumptionFoof { get; private set; } = 5;
+    [field: SerializeField] public int Time { get; private set; } = 5;
     [SerializeField] private Collider2D _collider;
     [SerializeField] private UnitStateMachine _stateMachine;
 
