@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Squad
+public abstract class Squad
 {
     private List<Unit> _selectedUnitRtsList = new List<Unit>();
     private CircleShape _circleShape = new CircleShape();
@@ -17,7 +17,7 @@ public class Squad
             //unit.Diselect();
         }
 
-        _selectedUnitRtsList.Clear();
+        //_selectedUnitRtsList.Clear();
 
         foreach (var unit in units)
         {

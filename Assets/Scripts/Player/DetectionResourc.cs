@@ -26,7 +26,8 @@ public class DetectionResourc : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out ResoursView resours))
         {
             _resoursUIView.SetActive(true);
-            Visit(resours);
+            ResourcInformation(resours);
+            //Visit(resours);
         }
     }
 
@@ -45,25 +46,24 @@ public class DetectionResourc : MonoBehaviour
 
     public void Visit(Wood wood)
     {
-        _spriteResourc.sprite = wood.ResourcesData.SpriteResourc;
-        _textNameResourc.text = wood.ResourcesData.NameResourc.ToString();
-        _countResourc.text = wood.ResourcesData.CountResources.ToString();
 
     }
 
     public void Visit(Stone stone)
     {
-        _spriteResourc.sprite = stone.ResourcesData.SpriteResourc;
-        _textNameResourc.text = stone.ResourcesData.NameResourc.ToString();
-        _countResourc.text = stone.ResourcesData.CountResources.ToString();
 
     }
 
     public void Visit(Food food)
     {
-        _spriteResourc.sprite = food.ResourcesData.SpriteResourc;
-        _textNameResourc.text = food.ResourcesData.NameResourc.ToString();
-        _countResourc.text = food.ResourcesData.CountResources.ToString();
+        
+    }
+
+    public void ResourcInformation(ResoursView resours)
+    {
+        _spriteResourc.sprite = resours.ResourcesData.SpriteResourc;
+        _textNameResourc.text = resours.ResourcesData.NameResourc.ToString();
+        _countResourc.text = resours.ResourcesData.CountResources.ToString();
     }
 
 }

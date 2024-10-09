@@ -7,6 +7,11 @@ public class ServiceLocator : MonoBehaviour
 
     public static ServiceLocator Instance;
 
+    public FreeSquad _freeSquad;
+    public WoodSquad _woodSquad;
+    public StoneSquad _stoneSquad;
+    public FoodSquad _foodSquad;
+
     void Start()
     {
         if (Instance == null)
@@ -21,6 +26,9 @@ public class ServiceLocator : MonoBehaviour
 
     private void InitializeManager()
     {
-        
+        _freeSquad = new FreeSquad();
+        _woodSquad = new WoodSquad();
+        _stoneSquad = new StoneSquad();
+        _foodSquad = new FoodSquad();
     }
 }

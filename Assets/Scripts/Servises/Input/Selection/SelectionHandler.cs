@@ -7,7 +7,7 @@ public class SelectionHandler : IHitVisitor
 
     public SelectionHandler()
     {
-        _squad = new Squad();
+        //_squad = new Squad();
     }
 
     public void SelectUnits(Collider2D[] collider2DArray)
