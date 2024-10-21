@@ -18,7 +18,7 @@ public class SelectionHandler : IHitVisitor
             if (collider2D.TryGetComponent(out Unit unit))
                 units.Add(unit);
 
-        _squad.Add(units);
+       // _squad.Add(units);
     }
 
     public void Visit(IHitble hit, Vector2 target)
@@ -28,12 +28,12 @@ public class SelectionHandler : IHitVisitor
 
     public void Visit(Ground groundHit, Vector2 target)
     {
-        _squad.AddTarget(target);
+       // _squad.AddTarget(target);
     }
 
     public void Visit(ResoursView resourcesHit, Vector2 point)
     {
-        _squad.TransferUnit(resourcesHit,point);
+        //_squad.TransferUnit(resourcesHit,point);
     }
 }
 

@@ -10,6 +10,11 @@ public class Player : MonoBehaviour
     private Movement _movement;
     private Health _health;
     private PlayerInput _playerInput;
+    
+    public FreeSquad FreeSquad { get; private set; }
+    public WoodSquad WoodSquad { get; private set; }
+    public StoneSquad StoneSquad  { get; private set; }
+    public FoodSquad FoodSquad { get; private set; }
 
     private void Awake()
     {
@@ -23,12 +28,20 @@ public class Player : MonoBehaviour
         _health = new Health(_playerData.Health);
         _stateMachine.Initialize(_movement, _health);
         _playerInput.Initialize(this);
+        
+        FreeSquad = new FreeSquad();
+        WoodSquad = new WoodSquad();
+        StoneSquad = new StoneSquad();
+        FoodSquad = new FoodSquad();
     }
 
     public void TransferStateMachine(Hit hit)
     {
         _stateMachine.Move(hit);
     }
+
+    public void AddFreeUnits(Unit unit)
+    {
+        FreeSquad.Add(unit);
+    }
 }
-
-

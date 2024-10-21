@@ -6,6 +6,7 @@ public class InitTransition : MonoBehaviour
 {
     [SerializeField] private ReceiverDetector _receiverDetector;
     [SerializeField] private UnitStateMachine _stateMachine;
+    [SerializeField] private Unit _unit;
     private Coroutine _coroutine;
 
     public void Enter()
@@ -25,7 +26,9 @@ public class InitTransition : MonoBehaviour
         Hit hitData = new Hit(vector, null);
 
         yield return new WaitForSeconds(_receiverDetector.Time);
-
+        
+        _unit.AddFreeList();
         _stateMachine.Move(hitData);
+
     }
 }

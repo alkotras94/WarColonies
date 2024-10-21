@@ -9,6 +9,7 @@ public class Unit : MonoBehaviour
     private Movement _movement;
 
     private Health _health;
+    private Player _player;
 
     public void Initialize(UnitData unitData)
     {
@@ -18,6 +19,7 @@ public class Unit : MonoBehaviour
         _stateMachine.Initialize(_movement, _health, _managementTransition, _initTransition);
         Vector2 firstPoint = new Vector2(ServiceLocator.Instance.ReceptionFirstPoint.position.x, ServiceLocator.Instance.ReceptionFirstPoint.position.y);
         AddHit(firstPoint);
+        _player = ServiceLocator.Instance.Player;
     }
 
     public void AddHit(Vector2 target)
@@ -29,6 +31,11 @@ public class Unit : MonoBehaviour
     public void TransferStateMachine(Hit hitData)
     {
         _stateMachine.CollectingResources(hitData);
+    }
+
+    public void AddFreeList()
+    {
+        _player.AddFreeUnits(this);
     }
  
 }

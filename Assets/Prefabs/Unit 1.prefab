@@ -873,7 +873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56baa88a021161648ae0c0db187609f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "<Time\u0421onsumptionFoof>k__BackingField": 5
+  <Time>k__BackingField: 5
   _collider: {fileID: 4129469686932381003}
   _stateMachine: {fileID: 1504054297591880332}
 --- !u!114 &4234994948173116789
@@ -890,6 +890,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _receiverDetector: {fileID: 4182271423002806524}
   _stateMachine: {fileID: 1504054297591880332}
+  _unit: {fileID: 2537909031704365649}
 --- !u!1 &9201933899252344140
 GameObject:
   m_ObjectHideFlags: 0
