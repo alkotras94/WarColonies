@@ -347,11 +347,23 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
-  m_WholeNumbers: 0
+  m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 237061661}
+        m_TargetAssemblyTypeName: SliderDistribution, Assembly-CSharp
+        m_MethodName: OnSliderChanged
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &80750834
 GameObject:
   m_ObjectHideFlags: 0
@@ -1579,8 +1591,9 @@ GameObject:
   - component: {fileID: 237061659}
   - component: {fileID: 237061658}
   - component: {fileID: 237061660}
+  - component: {fileID: 237061661}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: SliderDistribution
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1672,6 +1685,33 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &237061661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237061656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d40e6d94548d91e4193672c14b034f5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allUnits: 100
+  unitsText: {fileID: 1823865934}
+  sliders:
+  - slider: {fileID: 931175846}
+    sliderCountText: {fileID: 941950473}
+    sliderMaxValue: 100
+    oldValue: 0
+  - slider: {fileID: 309435066}
+    sliderCountText: {fileID: 465082003}
+    sliderMaxValue: 100
+    oldValue: 0
+  - slider: {fileID: 51357425}
+    sliderCountText: {fileID: 785880698}
+    sliderMaxValue: 100
+    oldValue: 0
 --- !u!1 &237775636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1835,11 +1875,23 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
-  m_WholeNumbers: 0
+  m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 237061661}
+        m_TargetAssemblyTypeName: SliderDistribution, Assembly-CSharp
+        m_MethodName: OnSliderChanged
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &340933671
 GameObject:
   m_ObjectHideFlags: 0
@@ -3506,7 +3558,6 @@ GameObject:
   - component: {fileID: 766848155}
   - component: {fileID: 766848157}
   - component: {fileID: 766848156}
-  - component: {fileID: 766848158}
   m_Layer: 5
   m_Name: PanelWorkUnit
   m_TagString: Untagged
@@ -3577,23 +3628,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 766848154}
   m_CullTransparentMesh: 1
---- !u!114 &766848158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 766848154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e7a4dc99884bea42bed11c927d88c7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 8374807885897704040}
-  _textFreeUnits: {fileID: 1823865934}
-  _sliderFood: {fileID: 0}
-  _sliderWood: {fileID: 0}
-  _sliderStone: {fileID: 0}
 --- !u!1 &775268139
 GameObject:
   m_ObjectHideFlags: 0
@@ -4695,11 +4729,23 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 0.34
+  m_WholeNumbers: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 237061661}
+        m_TargetAssemblyTypeName: SliderDistribution, Assembly-CSharp
+        m_MethodName: OnSliderChanged
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &941950471
 GameObject:
   m_ObjectHideFlags: 0
