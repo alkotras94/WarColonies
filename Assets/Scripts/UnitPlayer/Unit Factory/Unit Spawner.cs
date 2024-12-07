@@ -5,7 +5,6 @@ public class UnitSpawner : MonoBehaviour
 {
     [SerializeField] private UnitFactory _unitfactory;
     [SerializeField] private Button _button;
-    //[SerializeField] private ResourcesFortrres _resourcesFortrres;
 
     private void OnEnable()
     {

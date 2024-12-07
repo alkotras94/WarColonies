@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//явл€етс€ главным входом в игру и скриптом игрока
 [RequireComponent(typeof(Movement), typeof(PlayerStateMachine), typeof(PlayerInput))]
 public class Player : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class Player : MonoBehaviour
     private Movement _movement;
     private Health _health;
     private PlayerInput _playerInput;
-    
+
+    [SerializeField] private SliderDistribution _sliderDistribution;
     public FreeSquad FreeSquad { get; private set; }
     public WoodSquad WoodSquad { get; private set; }
     public StoneSquad StoneSquad  { get; private set; }
@@ -33,6 +35,8 @@ public class Player : MonoBehaviour
         WoodSquad = new WoodSquad();
         StoneSquad = new StoneSquad();
         FoodSquad = new FoodSquad();
+
+        _sliderDistribution.Initialize(FreeSquad, WoodSquad, StoneSquad, FoodSquad);
     }
 
     public void TransferStateMachine(Hit hit)
@@ -43,5 +47,6 @@ public class Player : MonoBehaviour
     public void AddFreeUnits(Unit unit)
     {
         FreeSquad.Add(unit);
+        _sliderDistribution.UpdateSlider();
     }
 }

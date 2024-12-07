@@ -16,27 +16,62 @@ public class SliderInstance
 
 public class SliderDistribution : MonoBehaviour
 {
+    public int TotalNumberUnits; //Общее количество юнитов
     public int allUnits; // Все юниты для распределения
     private int curUnits; // Текущие юниты
 
     [SerializeField] private TMP_Text unitsText; // Текст отображающий текущих юнитов
 
     [Header("Sliders")]
-    [SerializeField]public SliderInstance[] sliders; // Слайдеры на сцене
+    [SerializeField]public SliderInstance[] sliders; // Слайдеры на сцене у нас их 3
 
-    void Start()
+    private RedeploymentUnit _redeploymentUnit;
+
+    private FreeSquad _freeSquad;
+    private WoodSquad _woodSquad;
+    private StoneSquad _stoneSquad;
+    private FoodSquad _foodSquad;
+
+    private int _saveFood;
+    private int _saveWood;
+    private int _saveStone;
+
+    public void Initialize(FreeSquad freeSquad, WoodSquad woodSquad, StoneSquad stoneSquad, FoodSquad foodSquad )
     {
-        curUnits = allUnits; 
+        _freeSquad = freeSquad;
+        _woodSquad = woodSquad;
+        _stoneSquad = stoneSquad;
+        _foodSquad = foodSquad;
 
-        foreach (var slider in sliders) // Задаем всем слайдерам макс. значение, указанное в инспекторе
-        {
-            slider.slider.maxValue = slider.sliderMaxValue;
-        }
+        _redeploymentUnit = new RedeploymentUnit();
+
+        UpdateSlider();
     }
 
-    void Update()
+    public void UpdateSlider()
     {
-        unitsText.text = curUnits.ToString(); //Показываем оставшихся юнитов
+        allUnits = _freeSquad.CountUnit;
+        curUnits = allUnits;
+        TotalNumberUnits = _freeSquad.CountUnit + _woodSquad.CountUnit + _stoneSquad.CountUnit + _foodSquad.CountUnit;
+
+        foreach (var slider in sliders) // Задаем всем слайдерам макс. значение, общего числа юнитов
+        {
+            slider.slider.maxValue = TotalNumberUnits;
+        }
+
+        unitsText.text = curUnits.ToString();
+    }
+
+    public void AssignUnits()
+    {
+        _redeploymentUnit.Recalculate(_saveFood, sliders[0], _freeSquad, _foodSquad);
+        _saveFood = (int)sliders[0].slider.value;
+        _redeploymentUnit.Recalculate(_saveWood, sliders[1], _freeSquad, _woodSquad);
+        _saveWood = (int)sliders[1].slider.value;
+        _redeploymentUnit.Recalculate(_saveStone, sliders[2], _freeSquad, _stoneSquad);
+        _saveStone = (int)sliders[2].slider.value;
+
+        Debug.Log("Свободные " + _freeSquad.CountUnit + " На еду " + _foodSquad.CountUnit + " На дерево " + _woodSquad.CountUnit + " На камень " + _stoneSquad.CountUnit);
     }
 
     public void OnSliderChanged(int sliderID) // Вызываем при изменении слайдера и указываем его ID в массиве
@@ -51,6 +86,7 @@ public class SliderDistribution : MonoBehaviour
         }
         RecalculateUnits();
         sliders[sliderID].sliderCountText.text = sliders[sliderID].slider.value.ToString(); // Задаём значение текущего слайдера
+        unitsText.text = curUnits.ToString();
     }
 
     public void RecalculateUnits()
@@ -63,6 +99,7 @@ public class SliderDistribution : MonoBehaviour
         }
 
         curUnits = allUnits - sum;
+        unitsText.text = curUnits.ToString();
     }
     
 }

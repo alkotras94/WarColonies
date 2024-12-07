@@ -1697,20 +1697,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d40e6d94548d91e4193672c14b034f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allUnits: 100
+  TotalNumberUnits: 0
+  allUnits: 0
   unitsText: {fileID: 1823865934}
   sliders:
   - slider: {fileID: 931175846}
     sliderCountText: {fileID: 941950473}
-    sliderMaxValue: 100
+    sliderMaxValue: 0
     oldValue: 0
   - slider: {fileID: 309435066}
     sliderCountText: {fileID: 465082003}
-    sliderMaxValue: 100
+    sliderMaxValue: 0
     oldValue: 0
   - slider: {fileID: 51357425}
     sliderCountText: {fileID: 785880698}
-    sliderMaxValue: 100
+    sliderMaxValue: 0
     oldValue: 0
 --- !u!1 &237775636
 GameObject:
@@ -11877,6 +11878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerData: {fileID: 11400000, guid: 205b8fabb41853849903dcfe3b3c8d4c, type: 2}
+  _sliderDistribution: {fileID: 237061661}
 --- !u!114 &8374807885897704041
 MonoBehaviour:
   m_ObjectHideFlags: 0

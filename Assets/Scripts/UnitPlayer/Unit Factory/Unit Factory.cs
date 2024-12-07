@@ -27,6 +27,5 @@ public class UnitFactory : MonoBehaviour
     public void CanSpawn()
     {
             Spawn();
-            //_resourcesFortrres.WoodModel.Spend(_unitData.Price);
     }
 }
