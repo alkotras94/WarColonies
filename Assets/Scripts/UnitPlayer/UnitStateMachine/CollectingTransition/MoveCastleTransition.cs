@@ -9,21 +9,20 @@ public class MoveCastleTransition : Transition
     [SerializeField] private Movement _movement;
     [SerializeField] private DetectionCastle _detectionCastle;
 
-    private ResourcesFortrres _resourcesFortrres;
-    private Transform _pointCastle;
+    private Transform _pointStorage;
     private Hit _hitData;
     private int _resours = 1;
 
-    public void Initialize(ResourcesFortrres resourcesFortrres)
+    public void Initialize()
     {
-        _resourcesFortrres = resourcesFortrres;
-        _pointCastle = _resourcesFortrres.gameObject.transform;
+        
     }
     public override void Enter(Hit hitData)
     {
         _hitData = hitData;
         _detectionCastle.Enable();
-        _movement.AddTarget(_pointCastle.position);
+        Visit(hitData.Resours);
+        _movement.AddTarget(_pointStorage.position);
         _detectionCastle.ExitTrigger += OnExitTrigger;
     }
 
@@ -34,8 +33,32 @@ public class MoveCastleTransition : Transition
 
     public void OnExitTrigger()
     {
-        _resourcesFortrres.Visit(_hitData.Resours,_resours);
         _detectionCastle.ExitTrigger -= OnExitTrigger;
         _moveTransition.Enter(_hitData);
+    }
+
+    public void Visit(ResoursView resoursView)
+    {
+        Debug.Log("Визит");
+        Visit((dynamic)resoursView);
+    }
+
+    public void Visit(Wood wood)
+    {
+        Debug.Log("Визит дерева");
+        _pointStorage = ServiceLocator.Instance.StoragePointWood;
+        
+    }
+
+    public void Visit(Stone stone)
+    {
+        Debug.Log("Визит камня");
+        _pointStorage = ServiceLocator.Instance.StoragePointStone;
+    }
+
+    public void Visit(Food food)
+    {
+        Debug.Log("Визит еды");
+        _pointStorage = ServiceLocator.Instance.StoragePointFood;
     }
 }

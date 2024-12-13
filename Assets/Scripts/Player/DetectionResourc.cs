@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class DetectionResourc : MonoBehaviour
 {
@@ -10,14 +11,25 @@ public class DetectionResourc : MonoBehaviour
     [SerializeField] private Image _spriteResourc;
     [SerializeField] private TMP_Text _textNameResourc;
     [SerializeField] private TMP_Text _countResourc;
+
     [SerializeField] private Button _buttonSource;
     [SerializeField] private Button _buttonCollect;
 
     private Collider2D _collider;
+    private ResoursView _resoursView;
 
+    private FreeSquad _freeSquad;
+    private WoodSquad _woodSquad;
+    private StoneSquad _stoneSquad;
+    private FoodSquad _foodSquad;
 
-    private void Start()
+    public void Initialize(FreeSquad freeSquad, WoodSquad woodSquad, StoneSquad stoneSquad, FoodSquad foodSquad)
     {
+        _freeSquad = freeSquad;
+        _woodSquad = woodSquad;
+        _stoneSquad = stoneSquad;
+        _foodSquad = foodSquad;
+
         _collider = GetComponent<Collider2D>();
     }
 
@@ -26,8 +38,10 @@ public class DetectionResourc : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out ResoursView resours))
         {
             _resoursUIView.SetActive(true);
+            _resoursView = resours;
             ResourcInformation(resours);
-            //Visit(resours);
+            //_buttonSource.onClick.AddListener(StartVisit);
+
         }
     }
 
@@ -35,28 +49,37 @@ public class DetectionResourc : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out ResoursView resours))
         {
+            //_buttonSource.onClick.RemoveListener(StartVisit);
             _resoursUIView.SetActive(false);
         }
     }
 
+    public void StartVisit()
+    {
+        Visit(_resoursView);
+    }
     public void Visit(ResoursView resoursView)
     {
+        Debug.Log("Визит");
         Visit((dynamic)resoursView);
     }
 
     public void Visit(Wood wood)
     {
-
+        Debug.Log("Визит дерева");
+        _woodSquad.SetRecorcePoint(wood);
     }
 
     public void Visit(Stone stone)
     {
-
+        Debug.Log("Визит камня");
+        _stoneSquad.SetRecorcePoint(stone);
     }
 
     public void Visit(Food food)
     {
-        
+        Debug.Log("Визит еды");
+        _foodSquad.SetRecorcePoint(food);
     }
 
     public void ResourcInformation(ResoursView resours)

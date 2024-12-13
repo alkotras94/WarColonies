@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class StoneSquad : Squad
 {
-    
+    public StoneSquad(DetectionResourc detectionResourc) : base(detectionResourc)
+    {
+    }
 }

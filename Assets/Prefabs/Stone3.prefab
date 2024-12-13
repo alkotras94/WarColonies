@@ -47,7 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05e3b8cc79c2204a85d6b3d01ab267e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <_resourcesData>k__BackingField: {fileID: 11400000, guid: 886a62c010fb645adaa26b08ca6f8aeb, type: 2}
+  <ResourcesData>k__BackingField: {fileID: 11400000, guid: 886a62c010fb645adaa26b08ca6f8aeb, type: 2}
+  <Position>k__BackingField: {x: 0, y: 0}
 --- !u!212 &1169887139447930967
 SpriteRenderer:
   m_ObjectHideFlags: 0

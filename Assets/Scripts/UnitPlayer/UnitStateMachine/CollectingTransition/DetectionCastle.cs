@@ -23,7 +23,7 @@ public class DetectionCastle : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out Forttres resours))
+        if (collision.gameObject.TryGetComponent(out Storage resours))
         {
             Debug.Log("Зашел в замок");
             ExitTrigger?.Invoke();

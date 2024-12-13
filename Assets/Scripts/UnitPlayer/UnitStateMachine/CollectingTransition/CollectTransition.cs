@@ -8,10 +8,9 @@ public class CollectTransition : Transition
     [SerializeField] private float _timeCollect;
     [SerializeField] private UnitAnimation _unitAnimation;
     [SerializeField] private Movement _movement;
+    [SerializeField] private DetectionMove _detectionMove;
 
     private Coroutine _coroutine;
-
-
     private Hit _hitData;
 
     public override void Enter(Hit hitData)

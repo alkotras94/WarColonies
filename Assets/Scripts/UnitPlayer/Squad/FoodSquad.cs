@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class FoodSquad : Squad
 {
-    
+    public FoodSquad(DetectionResourc detectionResourc) : base(detectionResourc)
+    {
+    }
 }

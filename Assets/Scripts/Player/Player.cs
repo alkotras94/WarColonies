@@ -7,6 +7,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private PlayerData _playerData;
+    [SerializeField] private DetectionResourc _detectionResourc;
     private PlayerStateMachine _stateMachine;
     private Movement _movement;
     private Health _health;
@@ -31,12 +32,13 @@ public class Player : MonoBehaviour
         _stateMachine.Initialize(_movement, _health);
         _playerInput.Initialize(this);
         
-        FreeSquad = new FreeSquad();
-        WoodSquad = new WoodSquad();
-        StoneSquad = new StoneSquad();
-        FoodSquad = new FoodSquad();
+        FreeSquad = new FreeSquad(_detectionResourc);
+        WoodSquad = new WoodSquad(_detectionResourc);
+        StoneSquad = new StoneSquad(_detectionResourc);
+        FoodSquad = new FoodSquad(_detectionResourc);
 
         _sliderDistribution.Initialize(FreeSquad, WoodSquad, StoneSquad, FoodSquad);
+        _detectionResourc.Initialize(FreeSquad, WoodSquad, StoneSquad, FoodSquad);
     }
 
     public void TransferStateMachine(Hit hit)

@@ -8,9 +8,9 @@ public class ManagementTransition : MonoBehaviour
     [SerializeField] private CollectTransition _collectTransition;
     [SerializeField] private MoveCastleTransition _moveCastleTransition;
 
-    public void Initialize(ResourcesFortrres resourcesFortrres)
+    public void Initialize()
     {
-        _moveCastleTransition.Initialize(resourcesFortrres);
+        _moveCastleTransition.Initialize();
     }
     public void Enter(Hit hitData)
     {
