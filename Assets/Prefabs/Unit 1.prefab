@@ -764,6 +764,7 @@ MonoBehaviour:
   _timeCollect: 2
   _unitAnimation: {fileID: 7825056962952163719}
   _movement: {fileID: 8664529060007307375}
+  _detectionMove: {fileID: 7907008274658429245}
 --- !u!1 &7792882258313074417
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,7 +38,7 @@ public abstract class Squad
 
     public void SendUnitsCollect()
     {
-        Hit hitData = new Hit(ResoursView.Position, ResoursView);
+        Hit hitData = new Hit(ResoursView.Position, ResoursView, null);
         for (int i = 0; i < UnitList.Count; i++)
         {
             UnitList[i].TransferStateMachine(hitData);

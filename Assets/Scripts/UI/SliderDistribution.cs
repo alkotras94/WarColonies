@@ -18,7 +18,7 @@ public class SliderDistribution : MonoBehaviour
 {
     public int TotalNumberUnits; //Общее количество юнитов
     public int allUnits; // Все юниты для распределения
-    private int curUnits; // Текущие юниты
+    public int freeUnits; //Свободные юниты
 
     [SerializeField] private TMP_Text unitsText; // Текст отображающий текущих юнитов
 
@@ -50,8 +50,8 @@ public class SliderDistribution : MonoBehaviour
 
     public void UpdateSlider()
     {
-        allUnits = _freeSquad.CountUnit;
-        curUnits = allUnits;
+        allUnits = TotalNumberUnits;
+        freeUnits = _freeSquad.CountUnit;
         TotalNumberUnits = _freeSquad.CountUnit + _woodSquad.CountUnit + _stoneSquad.CountUnit + _foodSquad.CountUnit;
 
         foreach (var slider in sliders) // Задаем всем слайдерам макс. значение, общего числа юнитов
@@ -59,7 +59,7 @@ public class SliderDistribution : MonoBehaviour
             slider.slider.maxValue = TotalNumberUnits;
         }
 
-        unitsText.text = curUnits.ToString();
+        unitsText.text = allUnits.ToString();
     }
 
     public void AssignUnits()
@@ -76,7 +76,7 @@ public class SliderDistribution : MonoBehaviour
 
     public void OnSliderChanged(int sliderID) // Вызываем при изменении слайдера и указываем его ID в массиве
     {
-        if ((curUnits + sliders[sliderID].oldValue) - (int)sliders[sliderID].slider.value >= 0) // Вычитаем из текущих юнитов (без учёта текущего слайдера) его новое значение
+        if ((freeUnits + sliders[sliderID].oldValue) - (int)sliders[sliderID].slider.value >= 0) // Вычитаем из текущих юнитов (без учёта текущего слайдера) его новое значение
         {
             sliders[sliderID].oldValue = (int)sliders[sliderID].slider.value;
         }
@@ -86,7 +86,7 @@ public class SliderDistribution : MonoBehaviour
         }
         RecalculateUnits();
         sliders[sliderID].sliderCountText.text = sliders[sliderID].slider.value.ToString(); // Задаём значение текущего слайдера
-        unitsText.text = curUnits.ToString();
+        unitsText.text = freeUnits.ToString();
     }
 
     public void RecalculateUnits()
@@ -98,8 +98,8 @@ public class SliderDistribution : MonoBehaviour
             sum += slider.oldValue;
         }
 
-        curUnits = allUnits - sum;
-        unitsText.text = curUnits.ToString();
+        freeUnits = allUnits - sum;
+        unitsText.text = freeUnits.ToString();
     }
     
 }

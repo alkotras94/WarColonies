@@ -7,6 +7,7 @@ public class ServiceLocator : MonoBehaviour
     [field: SerializeField] public Transform StoragePointFood { get; private set; } 
     [field: SerializeField] public Transform StoragePointWood { get; private set; }
     [field: SerializeField] public Transform StoragePointStone { get; private set; }
+    [field: SerializeField] public SliderDistribution SliderDistribution { get; private set; }
     [field: SerializeField] public Player Player { get; private set; } 
     
     

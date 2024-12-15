@@ -31,7 +31,8 @@ public class Player : MonoBehaviour
         _health = new Health(_playerData.Health);
         _stateMachine.Initialize(_movement, _health);
         _playerInput.Initialize(this);
-        
+        _movement.Initialize();
+
         FreeSquad = new FreeSquad(_detectionResourc);
         WoodSquad = new WoodSquad(_detectionResourc);
         StoneSquad = new StoneSquad(_detectionResourc);

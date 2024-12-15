@@ -9,13 +9,15 @@ public class Movement : MonoBehaviour
     [SerializeField] private float _distanceStop = 0.5f;
 
     private Coroutine _coroutine;
+    private Rotation _rotation;
 
     public event Action PointCame;
 
-    private void Start()
+    public void Initialize()
     {
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
+        _rotation = new Rotation(transform);
     }
 
     public void AddTarget(Vector2 target)
@@ -23,6 +25,7 @@ public class Movement : MonoBehaviour
         _agent.isStopped = false;
         _agent.SetDestination(new Vector3(target.x, target.y, transform.position.z));
         _coroutine = StartCoroutine(CalculateDistance(target));
+        _rotation.Rotate(target);
     }
     public void StopMovement()
     {

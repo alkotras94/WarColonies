@@ -23,7 +23,7 @@ public class PlayerInput : MonoBehaviour
     private void TargetPoint()
     {
         TargetPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
-        Hit hit = new Hit(TargetPosition, null);
+        Hit hit = new Hit(TargetPosition, null, _player.transform);
         _player.TransferStateMachine(hit);
     }
 
@@ -35,7 +35,7 @@ public class PlayerInput : MonoBehaviour
         if (raycastHit.collider.TryGetComponent(out IHitble hitble))
         {
             TargetPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
-            Hit hit = new Hit(TargetPosition, null);
+            Hit hit = new Hit(TargetPosition, null, _player.transform);
             _player.TransferStateMachine(hit);
         }
     }

@@ -7,6 +7,7 @@ public class InitTransition : MonoBehaviour
     [SerializeField] private ReceiverDetector _receiverDetector;
     [SerializeField] private UnitStateMachine _stateMachine;
     [SerializeField] private Unit _unit;
+
     private Coroutine _coroutine;
 
     public void Enter()
@@ -23,7 +24,7 @@ public class InitTransition : MonoBehaviour
     public IEnumerator EatFood()
     {
         Vector2 vector = new Vector2(ServiceLocator.Instance.PointFreeWorkers.position.x, ServiceLocator.Instance.PointFreeWorkers.position.y);
-        Hit hitData = new Hit(vector, null);
+        Hit hitData = new Hit(vector, null, null);
 
         yield return new WaitForSeconds(_receiverDetector.Time);
         
