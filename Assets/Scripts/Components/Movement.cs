@@ -15,9 +15,9 @@ public class Movement : MonoBehaviour
 
     public void Initialize()
     {
+        _rotation = new Rotation(transform);
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
-        _rotation = new Rotation(transform);
     }
 
     public void AddTarget(Vector2 target)

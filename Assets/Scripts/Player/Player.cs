@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     private Movement _movement;
     private Health _health;
     private PlayerInput _playerInput;
+    private Camera _camera;
 
     [SerializeField] private SliderDistribution _sliderDistribution;
     public FreeSquad FreeSquad { get; private set; }
@@ -21,6 +22,8 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        _camera = Camera.main;
+        _camera.GetComponent<CameraFollow>().Follow(gameObject);
         _stateMachine = GetComponent<PlayerStateMachine>();
         _movement = GetComponent<Movement>();
         _playerInput = GetComponent<PlayerInput>();
