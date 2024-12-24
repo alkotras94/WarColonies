@@ -13,10 +13,12 @@ public class FoodStorage : Storage
         _foodModel = new FoodModel();
         _foodModel.Changed += UpdateUI;
     }
+
     private void UpdateUI()
     {
         _uiCountResourc.text = _foodModel.Resours.ToString();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent(out PartFood food))

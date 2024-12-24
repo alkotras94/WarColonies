@@ -26,7 +26,7 @@ public class PlayerInput : MonoBehaviour
             if (Input.touchCount > 0)
             {
                 Touch touch = Input.GetTouch(0);
-                if (!EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+                if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
                 {
                     Raycast();
                 }

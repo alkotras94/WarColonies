@@ -20,7 +20,8 @@ public class SliderDistribution : MonoBehaviour
     public int allUnits; // Все юниты для распределения
     public int freeUnits; //Свободные юниты
 
-    [SerializeField] private TMP_Text unitsText; // Текст отображающий текущих юнитов
+    [SerializeField] private TMP_Text unitsFreeText; // Текст отображающий свободных юнитов
+    [SerializeField] private TMP_Text alUnitsText; // Текст отображающий всех юнитов
 
     [Header("Sliders")]
     [SerializeField]public SliderInstance[] sliders; // Слайдеры на сцене у нас их 3
@@ -32,9 +33,9 @@ public class SliderDistribution : MonoBehaviour
     private StoneSquad _stoneSquad;
     private FoodSquad _foodSquad;
 
-    private int _saveFood;
-    private int _saveWood;
-    private int _saveStone;
+    public int _saveFood;
+    public int _saveWood;
+    public int _saveStone;
 
     public void Initialize(FreeSquad freeSquad, WoodSquad woodSquad, StoneSquad stoneSquad, FoodSquad foodSquad )
     {
@@ -59,11 +60,15 @@ public class SliderDistribution : MonoBehaviour
             slider.slider.maxValue = TotalNumberUnits;
         }
 
-        unitsText.text = allUnits.ToString();
+        UpdateUI();
     }
 
     public void AssignUnits()
     {
+        _redeploymentUnit.AddFreeList(_saveFood, sliders[0], _freeSquad, _foodSquad);
+        _redeploymentUnit.AddFreeList(_saveWood, sliders[1], _freeSquad, _woodSquad);
+        _redeploymentUnit.AddFreeList(_saveStone, sliders[2], _freeSquad, _stoneSquad);
+
         _redeploymentUnit.Recalculate(_saveFood, sliders[0], _freeSquad, _foodSquad);
         _saveFood = (int)sliders[0].slider.value;
         _redeploymentUnit.Recalculate(_saveWood, sliders[1], _freeSquad, _woodSquad);
@@ -71,6 +76,7 @@ public class SliderDistribution : MonoBehaviour
         _redeploymentUnit.Recalculate(_saveStone, sliders[2], _freeSquad, _stoneSquad);
         _saveStone = (int)sliders[2].slider.value;
 
+        UpdateUI();
         Debug.Log("Свободные " + _freeSquad.CountUnit + " На еду " + _foodSquad.CountUnit + " На дерево " + _woodSquad.CountUnit + " На камень " + _stoneSquad.CountUnit);
     }
 
@@ -86,7 +92,7 @@ public class SliderDistribution : MonoBehaviour
         }
         RecalculateUnits();
         sliders[sliderID].sliderCountText.text = sliders[sliderID].slider.value.ToString(); // Задаём значение текущего слайдера
-        unitsText.text = freeUnits.ToString();
+        UpdateUI();
     }
 
     public void RecalculateUnits()
@@ -99,7 +105,12 @@ public class SliderDistribution : MonoBehaviour
         }
 
         freeUnits = allUnits - sum;
-        unitsText.text = freeUnits.ToString();
+        UpdateUI();
     }
-    
+
+    private void UpdateUI()
+    {
+        unitsFreeText.text = "Свободные " + freeUnits.ToString();
+        alUnitsText.text = "Всего рабочих " + allUnits.ToString();
+    }
 }
