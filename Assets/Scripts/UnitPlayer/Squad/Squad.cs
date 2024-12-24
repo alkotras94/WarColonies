@@ -9,6 +9,7 @@ public abstract class Squad
 
     public ResoursView ResoursView;
     private DetectionResourc _detectionResourc;
+    private Hit _hit;
 
     public event Action NumberUpdated;
 
@@ -44,7 +45,5 @@ public abstract class Squad
             UnitList[i].TransferStateMachine(hitData);
         }
     }
-
-
 }
 

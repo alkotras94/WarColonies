@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -8,7 +9,15 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private float _rotationAngleX;
     [SerializeField] private float Distance;
     [SerializeField] private float OffsetY;
+    [SerializeField] private float Size;
+    [SerializeField] private Slider _sliderSize;
 
+    private Camera _camera;
+
+    private void Start()
+    {
+        _camera = GetComponent<Camera>();
+    }
     private void LateUpdate()
     {
         if (_following == null)
@@ -21,6 +30,10 @@ public class CameraFollow : MonoBehaviour
         transform.position = position;
     }
 
+    public void OnValueÑhanged()
+    {
+        _camera.orthographicSize = _sliderSize.value;
+    }
     public void Follow(GameObject following) =>
         _following = following.transform;
 

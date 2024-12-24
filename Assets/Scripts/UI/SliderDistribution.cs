@@ -76,6 +76,10 @@ public class SliderDistribution : MonoBehaviour
         _redeploymentUnit.Recalculate(_saveStone, sliders[2], _freeSquad, _stoneSquad);
         _saveStone = (int)sliders[2].slider.value;
 
+        _woodSquad.SendUnitsCollect();
+        _stoneSquad.SendUnitsCollect();
+        _foodSquad.SendUnitsCollect();
+
         UpdateUI();
         Debug.Log("Свободные " + _freeSquad.CountUnit + " На еду " + _foodSquad.CountUnit + " На дерево " + _woodSquad.CountUnit + " На камень " + _stoneSquad.CountUnit);
     }
