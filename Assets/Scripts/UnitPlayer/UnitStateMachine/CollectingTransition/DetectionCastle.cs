@@ -1,9 +1,13 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class DetectionCastle : MonoBehaviour
 {
     [SerializeField] private Collider2D _collider;
+    [SerializeField] private int _timePut;
+
+    private Coroutine _coroutine;
 
     public Action ExitTrigger;
 
@@ -26,7 +30,13 @@ public class DetectionCastle : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out Storage resours))
         {
             Debug.Log("Зашел в замок");
-            ExitTrigger?.Invoke();
+            _coroutine = StartCoroutine(PutResours());
         }
+    }
+
+    private IEnumerator PutResours()
+    {
+        yield return new WaitForSeconds(_timePut);
+        ExitTrigger?.Invoke();
     }
 }

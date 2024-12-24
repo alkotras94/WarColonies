@@ -2,11 +2,11 @@ using System;
 using UnityEngine;
 public abstract class ResoursModel
 {
-    public int Resours { get; private set; }
+    public uint Resours { get; private set; }
 
     public event Action Changed;
 
-    public void Add(int value)
+    public void Add(uint value)
     {
         if (value <= 0)
             throw new ArgumentOutOfRangeException();
@@ -16,7 +16,7 @@ public abstract class ResoursModel
         Changed?.Invoke();
     }
 
-    public void Spend(int value)
+    public void Spend(uint value)
     {
         if (value <= 0 && value > Resours)
             throw new ArgumentOutOfRangeException();

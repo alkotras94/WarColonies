@@ -14,10 +14,29 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject())
+        if (Application.isEditor || SystemInfo.deviceType == DeviceType.Desktop)
+        {
+            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+            {
+                Raycast();
+            }
+        }
+        else
+        {
+            if (Input.touchCount > 0)
+            {
+                Touch touch = Input.GetTouch(0);
+                if (!EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+                {
+                    Raycast();
+                }
+            }
+        }
+
+        /*if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             Raycast();
-        }
+        }*/
     }
 
     private void TargetPoint()

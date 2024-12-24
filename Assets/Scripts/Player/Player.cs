@@ -20,6 +20,10 @@ public class Player : MonoBehaviour
     public StoneSquad StoneSquad  { get; private set; }
     public FoodSquad FoodSquad { get; private set; }
 
+    [SerializeField] private FoodStorage _foodStorage;
+    [SerializeField] private StoneStorage _stoneStorage;
+    [SerializeField] private WoodStorage _woodStorage;
+
     private void Awake()
     {
         _camera = Camera.main;
@@ -43,6 +47,10 @@ public class Player : MonoBehaviour
 
         _sliderDistribution.Initialize(FreeSquad, WoodSquad, StoneSquad, FoodSquad);
         _detectionResourc.Initialize(FreeSquad, WoodSquad, StoneSquad, FoodSquad);
+
+        _foodStorage.Initialize();
+        _woodStorage.Initialize();
+        _stoneStorage.Initialize();
     }
 
     public void TransferStateMachine(Hit hit)
