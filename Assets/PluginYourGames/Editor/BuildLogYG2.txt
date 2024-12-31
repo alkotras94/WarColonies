@@ -1,0 +1,3 @@
+Build path: C:/Users/User/Desktop/WarColonies.apk
+Build number: 2
+PluginYG version: 2.002

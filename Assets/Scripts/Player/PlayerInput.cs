@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -7,36 +8,66 @@ public class PlayerInput : MonoBehaviour
     public Vector2 TargetPosition { get; private set; }
     private Player _player;
 
+    private bool touchProcessed = false; // Флаг для отслеживания обработанного касания
+
     public void Initialize(Player player)
     {
         _player = player;
     }
-
+    
     void Update()
     {
-        if (Application.isEditor || SystemInfo.deviceType == DeviceType.Desktop)
+        // Проверка для мыши
+        /*if (Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+            if (EventSystem.current.IsPointerOverGameObject())
             {
+                Debug.Log("Курсор находится над UI. Raycast игнорируется.Мышка");
+                return;
+            }
+
+            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+            Vector2 rayOrigin = ray.origin;
+            int layerMask = ~LayerMask.GetMask("UI"); // Исключаем слой UI
+
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.zero, Mathf.Infinity, layerMask);
+            if (hit.collider != null)
+            {
+                Debug.Log($"Попадание в объект мышью: {hit.collider.name}");
+            }
+        }*/
+
+        // Проверка для тач-устройств
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began && !touchProcessed && EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+            {
+                touchProcessed = true;
+                Debug.Log("Касание начато!");
+                Debug.Log("Касание UI. Raycast игнорируется.ТачПад");
+                return;
+            }
+
+            Ray ray = Camera.main.ScreenPointToRay(touch.position);
+            Vector2 rayOrigin = ray.origin;
+            int layerMask = ~LayerMask.GetMask("UI"); // Исключаем слой UI
+
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.zero, Mathf.Infinity, layerMask);
+            if (touch.phase == TouchPhase.Began && !touchProcessed && hit.collider != null)
+            {
+                touchProcessed = true;
+                Debug.Log("Касание начато!");
+                Debug.Log($"Попадание в объект тач пад: {hit.collider.name}");
                 Raycast();
             }
-        }
-        else
-        {
-            if (Input.touchCount > 0)
+
+            if (touch.phase == TouchPhase.Ended)
             {
-                Touch touch = Input.GetTouch(0);
-                if (Input.touchCount > 0 && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-                {
-                    Raycast();
-                }
+                touchProcessed = false; // Сбрасываем флаг после завершения касания
             }
         }
-
-        /*if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject())
-        {
-            Raycast();
-        }*/
     }
 
     private void TargetPoint()
