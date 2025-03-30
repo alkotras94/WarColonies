@@ -60,7 +60,9 @@ public class Player : MonoBehaviour
 
     public void AddFreeUnits(Unit unit)
     {
+        Vector2 vector = new Vector2(ServiceLocator.Instance.PointFreeWorkers.position.x, ServiceLocator.Instance.PointFreeWorkers.position.y);
         FreeSquad.Add(unit);
+        FreeSquad.AddTarget(vector);
         _sliderDistribution.UpdateSlider();
     }
 }

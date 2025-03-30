@@ -29,7 +29,7 @@ public class InitTransition : MonoBehaviour
         yield return new WaitForSeconds(_receiverDetector.Time);
         
         _unit.AddFreeList();
-        _stateMachine.Move(hitData);
+       // _stateMachine.Move(hitData);
 
     }
 }

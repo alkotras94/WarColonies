@@ -18,7 +18,7 @@ public class PlayerInput : MonoBehaviour
     void Update()
     {
         // Проверка для мыши
-        /*if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             if (EventSystem.current.IsPointerOverGameObject())
             {
@@ -34,11 +34,12 @@ public class PlayerInput : MonoBehaviour
             if (hit.collider != null)
             {
                 Debug.Log($"Попадание в объект мышью: {hit.collider.name}");
+                Raycast();
             }
-        }*/
+        }
 
         // Проверка для тач-устройств
-        if (Input.touchCount > 0)
+        /*if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
 
@@ -67,7 +68,7 @@ public class PlayerInput : MonoBehaviour
             {
                 touchProcessed = false; // Сбрасываем флаг после завершения касания
             }
-        }
+        }*/
     }
 
     private void TargetPoint()
