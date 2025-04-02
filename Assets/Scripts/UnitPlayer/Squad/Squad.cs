@@ -34,6 +34,7 @@ public abstract class Squad
     public void SetRecorcePoint(ResoursView resoursView)
     {
         ResoursView = resoursView;
+        ResoursView.Ended += OnEndedResours;
         SendUnitsCollect();    
     }
 
@@ -54,6 +55,15 @@ public abstract class Squad
             {
                 UnitList[i].TransferStateMachine(hitData);
             }
+        }
+    }
+
+    private void OnEndedResours()
+    {
+        Debug.Log("Resource ended");
+        for (int i = 0; i < UnitList.Count; i++)
+        {
+            UnitList[i].SendWaitingState();
         }
     }
 }

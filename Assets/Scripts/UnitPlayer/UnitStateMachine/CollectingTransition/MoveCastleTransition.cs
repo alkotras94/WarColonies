@@ -34,6 +34,7 @@ public class MoveCastleTransition : Transition
     public override void Exit()
     {
         _detectionCastle.Disable();
+        OnExitTrigger();
     }
 
     public void OnExitTrigger()
