@@ -19,7 +19,7 @@ public class UnitStateMachine : MonoBehaviour
         _states = new List<State>()
         {
             new InitState(initTransition),
-            new WaitingState(),
+            new WaitingState(movement,this),
             new MoveState(movement, this),
             new CollectionResourcesState(managementTransition)
         };

@@ -30,7 +30,7 @@ public class CameraFollow : MonoBehaviour
         transform.position = position;
     }
 
-    public void OnValue—hanged()
+    public void OnValue–°hanged()
     {
         _camera.orthographicSize = _sliderSize.value;
     }

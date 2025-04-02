@@ -48,13 +48,13 @@ public class MoveCastleTransition : Transition
 
     public void Visit(ResoursView resoursView)
     {
-        Debug.Log("Визит");
+        Debug.Log("Visit");
         Visit((dynamic)resoursView);
     }
 
     public void Visit(Wood wood)
     {
-        Debug.Log("Визит дерева");
+        Debug.Log("Visit Wood");
         _pointStorage = ServiceLocator.Instance.StoragePointWood;
         _bow.SetActive(false);
         _partWood.SetActive(true);
@@ -63,7 +63,7 @@ public class MoveCastleTransition : Transition
 
     public void Visit(Stone stone)
     {
-        Debug.Log("Визит камня");
+        Debug.Log("Visit Stone");
         _pointStorage = ServiceLocator.Instance.StoragePointStone;
         _bow.SetActive(false);
         _partStone.SetActive(true);
@@ -71,7 +71,7 @@ public class MoveCastleTransition : Transition
 
     public void Visit(Food food)
     {
-        Debug.Log("Визит еды");
+        Debug.Log("Visit food");
         _pointStorage = ServiceLocator.Instance.StoragePointFood;
         _bow.SetActive(false);
         _partFood.SetActive(true);

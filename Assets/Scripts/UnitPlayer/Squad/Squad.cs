@@ -39,10 +39,21 @@ public abstract class Squad
 
     public void SendUnitsCollect()
     {
-        Hit hitData = new Hit(ResoursView.Position, ResoursView, null);
-        for (int i = 0; i < UnitList.Count; i++)
+        if (ResoursView == null)
         {
-            UnitList[i].TransferStateMachine(hitData);
+            Debug.Log("Resource not assigned");
+            for (int i = 0; i < UnitList.Count; i++)
+            {
+                UnitList[i].SendWaitingState();
+            }
+        }
+        else
+        {
+            Hit hitData = new Hit(ResoursView.Position, ResoursView, null);
+            for (int i = 0; i < UnitList.Count; i++)
+            {
+                UnitList[i].TransferStateMachine(hitData);
+            }
         }
     }
 }

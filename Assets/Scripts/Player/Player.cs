@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Является главным входом в игру и скриптом игрока
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 [RequireComponent(typeof(Movement), typeof(PlayerStateMachine), typeof(PlayerInput))]
 public class Player : MonoBehaviour
 {
@@ -60,9 +60,9 @@ public class Player : MonoBehaviour
 
     public void AddFreeUnits(Unit unit)
     {
-        Vector2 vector = new Vector2(ServiceLocator.Instance.PointFreeWorkers.position.x, ServiceLocator.Instance.PointFreeWorkers.position.y);
+        //Vector2 vector = new Vector2(ServiceLocator.Instance.PointFreeWorkers.position.x, ServiceLocator.Instance.PointFreeWorkers.position.y);
         FreeSquad.Add(unit);
-        FreeSquad.AddTarget(vector);
+        //FreeSquad.AddTarget(vector);
         _sliderDistribution.UpdateSlider();
     }
 }

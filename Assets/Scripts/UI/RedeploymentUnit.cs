@@ -13,6 +13,7 @@ public class RedeploymentUnit
                 Unit unit = squad.UnitList[0];
                 freeSquad.Add(unit);
                 squad.Remove(unit);
+                unit.SendWaitingState();
             }
         }
     }

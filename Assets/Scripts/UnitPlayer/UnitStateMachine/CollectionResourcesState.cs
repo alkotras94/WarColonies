@@ -12,7 +12,7 @@ public class CollectionResourcesState : State
     }
     public override void Enter(Hit hitData)
     {
-        Debug.Log("Вошли в состояние сбора ресурсов");
+        Debug.Log("The unit entered the resource gathering state.");
         _managementTransition.Enter(hitData);
     }
 

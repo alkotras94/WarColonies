@@ -38,10 +38,16 @@ public class Unit : MonoBehaviour
         _stateMachine.CollectingResources(hitData);
     }
 
-    public void AddFreeList() //При создании юнита добавляем его в List свободных юнитов
+    public void AddFreeList() //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ List пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     {
         _player.AddFreeUnits(this);
+        _stateMachine.Wait();
         _sliderDistribution.UpdateSlider();
+    }
+
+    public void SendWaitingState()
+    {
+        _stateMachine.Wait();
     }
  
 }

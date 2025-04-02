@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class FreeSquad : Squad
 {
-    private CircleShape _circleShape = new CircleShape(); //Построение в круг
+    //private CircleShape _circleShape = new CircleShape(); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
     public FreeSquad(DetectionResourc detectionResourc) : base(detectionResourc)
     {
     }
 
-    public void AddTarget(Vector2 point)
+    /*public void AddTarget(Vector2 point)
     {
         List<Vector2> points = SetPoinDirection(point);
 
@@ -17,12 +17,12 @@ public class FreeSquad : Squad
         {
             UnitList[i].AddHit(points[i]);
         }
-    }
+    }*/
 
-    private List<Vector2> SetPoinDirection(Vector2 point)
+    /*private List<Vector2> SetPoinDirection(Vector2 point)
     {
         List<Vector2> points = _circleShape.GetPositionListAround(point, UnitList.Count);
 
         return points;
-    }
+    }*/
 }
