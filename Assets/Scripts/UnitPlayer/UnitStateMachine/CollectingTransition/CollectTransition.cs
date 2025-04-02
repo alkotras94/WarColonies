@@ -24,6 +24,7 @@ public class CollectTransition : Transition
     public override void Exit()
     {
         StopCoroutine(_coroutine);
+        _unitAnimation.FinishAnimationCollectResources();
     }
 
     private IEnumerator Collect()
