@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private float _distanceStop = 0.5f;
-    [SerializeField] private float _searchRadius = 5f;
+    [SerializeField] private float _searchRadius = 0f; //Spread 
 
     private Coroutine _coroutine;
     private Rotation _rotation;

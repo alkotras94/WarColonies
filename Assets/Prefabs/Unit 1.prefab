@@ -611,6 +611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _agent: {fileID: 4181317886019001362}
   _distanceStop: 2
+  _searchRadius: 0
 --- !u!195 &4181317886019001362
 NavMeshAgent:
   m_ObjectHideFlags: 0
