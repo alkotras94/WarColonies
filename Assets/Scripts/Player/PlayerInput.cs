@@ -5,10 +5,11 @@ using UnityEngine.UI;
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
+    [SerializeField] private Toggle _toggle;
     public Vector2 TargetPosition { get; private set; }
     private Player _player;
 
-    private bool touchProcessed = false; // Флаг для отслеживания обработанного касания
+    private bool touchProcessed = false; // Flag for tracking a processed touch
 
     public void Initialize(Player player)
     {
@@ -17,58 +18,63 @@ public class PlayerInput : MonoBehaviour
     
     void Update()
     {
-        // Проверка для мыши
-        if (Input.GetMouseButtonDown(0))
+        if (_toggle.isOn)
         {
-            if (EventSystem.current.IsPointerOverGameObject())
+            // Checking for touch devices
+            if (Input.touchCount > 0)
             {
-                Debug.Log("The cursor is located above the UI. The Raycast is ignored.The mouse");
-                return;
-            }
+                Touch touch = Input.GetTouch(0);
 
-            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-            Vector2 rayOrigin = ray.origin;
-            int layerMask = ~LayerMask.GetMask("UI"); // Исключаем слой UI
+                if (touch.phase == TouchPhase.Began && !touchProcessed && EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+                {
+                    touchProcessed = true;
+                    Debug.Log("The touch has started!");
+                    Debug.Log("Touching the UI. The raycast is ignored.Touchpad");
+                    return;
+                }
 
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.zero, Mathf.Infinity, layerMask);
-            if (hit.collider != null)
-            {
-                Debug.Log($"Hitting an object with the mouse: {hit.collider.name}");
-                Raycast();
+                Ray ray = Camera.main.ScreenPointToRay(touch.position);
+                Vector2 rayOrigin = ray.origin;
+                int layerMask = ~LayerMask.GetMask("UI"); // Eliminating the UI layer
+
+                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.zero, Mathf.Infinity, layerMask);
+                if (touch.phase == TouchPhase.Began && !touchProcessed && hit.collider != null)
+                {
+                    touchProcessed = true;
+                    Debug.Log("The touch has started!");
+                    Debug.Log($"Hitting a touchpad object: {hit.collider.name}");
+                    Raycast();
+                }
+
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    touchProcessed = false; // We reset the flag after the touch is completed.
+                }
             }
         }
-
-        // Checking for touch devices
-        /*if (Input.touchCount > 0)
+        else
         {
-            Touch touch = Input.GetTouch(0);
-
-            if (touch.phase == TouchPhase.Began && !touchProcessed && EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+            // Проверка для мыши
+            if (Input.GetMouseButtonDown(0))
             {
-                touchProcessed = true;
-                Debug.Log("The touch has started!");
-                Debug.Log("Touching the UI. The raycast is ignored.Touchpad");
-                return;
-            }
+                if (EventSystem.current.IsPointerOverGameObject())
+                {
+                    Debug.Log("The cursor is located above the UI. The Raycast is ignored.The mouse");
+                    return;
+                }
 
-            Ray ray = Camera.main.ScreenPointToRay(touch.position);
-            Vector2 rayOrigin = ray.origin;
-            int layerMask = ~LayerMask.GetMask("UI"); // Eliminating the UI layer
+                Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+                Vector2 rayOrigin = ray.origin;
+                int layerMask = ~LayerMask.GetMask("UI"); // Исключаем слой UI
 
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.zero, Mathf.Infinity, layerMask);
-            if (touch.phase == TouchPhase.Began && !touchProcessed && hit.collider != null)
-            {
-                touchProcessed = true;
-                Debug.Log("The touch has started!");
-                Debug.Log($"Hitting a touchpad object: {hit.collider.name}");
-                Raycast();
+                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.zero, Mathf.Infinity, layerMask);
+                if (hit.collider != null)
+                {
+                    Debug.Log($"Hitting an object with the mouse: {hit.collider.name}");
+                    Raycast();
+                }
             }
-
-            if (touch.phase == TouchPhase.Ended)
-            {
-                touchProcessed = false; // We reset the flag after the touch is completed.
-            }
-        }*/
+        }
     }
 
     private void TargetPoint()
