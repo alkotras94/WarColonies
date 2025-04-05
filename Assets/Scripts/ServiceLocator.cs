@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class ServiceLocator : MonoBehaviour
 {
-    [field: SerializeField] public Transform ReceptionFirstPoint { get; private set; } //Точка создания новых юнитов
-    [field: SerializeField] public Transform PointFreeWorkers { get; private set; } //Точка свободных юнитов
+    [field: SerializeField] public Transform ReceptionFirstPoint { get; private set; } //New unit creation point
+    [field: SerializeField] public Transform PointFreeWorkers { get; private set; } //Free unit point
     [field: SerializeField] public Transform StoragePointFood { get; private set; } 
     [field: SerializeField] public Transform StoragePointWood { get; private set; }
     [field: SerializeField] public Transform StoragePointStone { get; private set; }

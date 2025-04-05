@@ -38,7 +38,7 @@ public class Unit : MonoBehaviour
         _stateMachine.CollectingResources(hitData);
     }
 
-    public void AddFreeList() //��� �������� ����� ��������� ��� � List ��������� ������
+    public void AddFreeList() 
     {
         _player.AddFreeUnits(this);
         _stateMachine.Wait();

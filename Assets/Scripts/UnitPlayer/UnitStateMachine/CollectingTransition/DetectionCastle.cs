@@ -29,7 +29,7 @@ public class DetectionCastle : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out Storage resours))
         {
-            Debug.Log("Зашел в замок");
+            Debug.Log("Entered the castle");
             _coroutine = StartCoroutine(PutResours());
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FreeSquad : Squad
 {
-    //private CircleShape _circleShape = new CircleShape(); //���������� � ����
+    //private CircleShape _circleShape = new CircleShape(); 
     public FreeSquad(DetectionResourc detectionResourc) : base(detectionResourc)
     {
     }

@@ -60,25 +60,25 @@ public class DetectionResourc : MonoBehaviour
     }
     public void Visit(ResoursView resoursView)
     {
-        Debug.Log("Визит");
+        Debug.Log("Visit");
         Visit((dynamic)resoursView);
     }
 
     public void Visit(Wood wood)
     {
-        Debug.Log("Визит дерева");
+        Debug.Log("Visit wood");
         _woodSquad.SetRecorcePoint(wood);
     }
 
     public void Visit(Stone stone)
     {
-        Debug.Log("Визит камня");
+        Debug.Log("Visit stone");
         _stoneSquad.SetRecorcePoint(stone);
     }
 
     public void Visit(Food food)
     {
-        Debug.Log("Визит еды");
+        Debug.Log("Visit food");
         _foodSquad.SetRecorcePoint(food);
     }
 

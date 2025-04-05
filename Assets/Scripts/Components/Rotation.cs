@@ -15,7 +15,7 @@ public class Rotation
     {
         if (_transformObject.position.x > transform.x)
         {
-            _transformObject.rotation = Quaternion.Euler(0, 180, 0); //Поворот на лево
+            _transformObject.rotation = Quaternion.Euler(0, 180, 0); //Turn left
         }
         if (_transformObject.position.x < transform.x)
         {

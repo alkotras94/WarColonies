@@ -20,15 +20,15 @@ public class StoneStorage : Storage, IHitble
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Тригер склада камня");
+        Debug.Log("The trigger of the stone warehouse");
         if (collision.gameObject.TryGetComponent(out PartStone stone))
         {
-            Debug.Log("Аляндр");
+            Debug.Log("Alyandr");
             _stoneModel.Add(1);
         }
         else
         {
-            Debug.Log("Не Аляндр");
+            Debug.Log("Not Alyandr");
         }
     }
 }

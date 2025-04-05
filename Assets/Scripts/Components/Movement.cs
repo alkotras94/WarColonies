@@ -25,16 +25,16 @@ public class Movement : MonoBehaviour
     {
         _agent.isStopped = false;
 
-        // Находим ближайшую свободную точку
+        // We find the nearest free point
         Vector2 adjustedTarget = FindFreePosition(target);
 
-        // Устанавливаем новую точку назначения
+        // Setting a new destination
         _agent.SetDestination(new Vector3(adjustedTarget.x, adjustedTarget.y, transform.position.z));
 
-        // Запускаем корутину для отслеживания прибытия
+        // Launching the arrival tracking routine
         _coroutine = StartCoroutine(CalculateDistance(adjustedTarget));
 
-        // Поворачиваем юнита в сторону цели
+        // Turning the unit towards the target
         _rotation.Rotate(adjustedTarget);
 
         /* _agent.SetDestination(new Vector3(target.x, target.y, transform.position.z));
@@ -51,12 +51,12 @@ public class Movement : MonoBehaviour
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(target, _distanceStop);
 
-        // Если точка свободна, возвращаем её
+        // If the point is free, we return it.
         if (colliders.Length == 0)
             return target;
 
-        // Если точка занята, ищем ближайшую свободную
-        for (int i = 0; i < 10; i++) // 10 попыток найти свободное место
+        // If the point is occupied, we look for the nearest vacant one.
+        for (int i = 0; i < 10; i++) // 10 attempts to find an empty seat
         {
             Vector2 randomOffset = UnityEngine.Random.insideUnitCircle * _searchRadius;
             Vector2 newTarget = target + randomOffset;
@@ -68,7 +68,7 @@ public class Movement : MonoBehaviour
             }
         }
 
-        // Если не нашли свободное место, возвращаем оригинальную цель
+        // If you can't find an empty space, we will return the original goal.
         return target;
     }
 

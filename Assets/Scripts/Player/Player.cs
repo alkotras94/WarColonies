@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//�������� ������� ������ � ���� � �������� ������
 [RequireComponent(typeof(Movement), typeof(PlayerStateMachine), typeof(PlayerInput))]
 public class Player : MonoBehaviour
 {

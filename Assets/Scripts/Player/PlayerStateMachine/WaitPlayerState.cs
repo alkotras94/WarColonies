@@ -3,11 +3,11 @@ public class WaitPlayerState : PlayerState
 {
     public override void Enter(Hit hitData)
     {
-        Debug.Log("Player вошел в состояние ожидания");
+        Debug.Log("The player has entered the standby state");
     }
 
     public override void Exit()
     {
-        Debug.Log("Player вышел из состояния ожидания");
+        Debug.Log("The player has exited the standby state");
     }
 }

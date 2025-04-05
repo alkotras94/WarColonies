@@ -14,13 +14,13 @@ public class MovePlayerState : PlayerState
     {
         _movement.AddTarget(hitData.Target);
         _movement.PointCame += OnPointCame;
-        Debug.Log("Player вошел в состояние передвижения");
+        Debug.Log("The player has entered a state of movement");
     }
 
     public override void Exit()
     {
         _movement.PointCame -= OnPointCame;
-        Debug.Log("Player вышел из состояния передвижения");
+        Debug.Log("The player has left the movement state");
     }
 
     private void OnPointCame()

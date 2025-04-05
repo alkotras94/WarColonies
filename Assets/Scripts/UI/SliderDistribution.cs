@@ -7,24 +7,24 @@ using TMPro;
 [Serializable]
 public class SliderInstance
 {
-    public Slider slider; // Сам слайдер
-    public TMP_Text sliderCountText; // Кол-во отображаемое под слайдером
-    public int sliderMaxValue = 20; // Максимальное значение слайдера
-    [HideInInspector] public int oldValue = 0; // Значение слайдера перед изменением
+    public Slider slider; // Slider
+    public TMP_Text sliderCountText; // Count display under Slider
+    public int sliderMaxValue = 20; // Max value Slider
+    [HideInInspector] public int oldValue = 0; // Value Slider before the change
 }
 
 
 public class SliderDistribution : MonoBehaviour
 {
-    public int TotalNumberUnits; //Общее количество юнитов
-    public int allUnits; // Все юниты для распределения
-    public int freeUnits; //Свободные юниты
+    public int TotalNumberUnits; //Total count units
+    public int allUnits; // All units to be distributed
+    public int freeUnits; //Free units
 
-    [SerializeField] private TMP_Text unitsFreeText; // Текст отображающий свободных юнитов
-    [SerializeField] private TMP_Text alUnitsText; // Текст отображающий всех юнитов
+    [SerializeField] private TMP_Text unitsFreeText; // Text showing free units
+    [SerializeField] private TMP_Text alUnitsText; // Text showing all units
 
     [Header("Sliders")]
-    [SerializeField]public SliderInstance[] sliders; // Слайдеры на сцене у нас их 3
+    [SerializeField]public SliderInstance[] sliders; // The sliders on the stage, we have 3 of them.
 
     private RedeploymentUnit _redeploymentUnit;
 
@@ -55,7 +55,7 @@ public class SliderDistribution : MonoBehaviour
         freeUnits = _freeSquad.CountUnit;
         TotalNumberUnits = _freeSquad.CountUnit + _woodSquad.CountUnit + _stoneSquad.CountUnit + _foodSquad.CountUnit;
 
-        foreach (var slider in sliders) // Задаем всем слайдерам макс. значение, общего числа юнитов
+        foreach (var slider in sliders) // Set all sliders to the max. value of the total number of units
         {
             slider.slider.maxValue = TotalNumberUnits;
         }
@@ -81,29 +81,29 @@ public class SliderDistribution : MonoBehaviour
         _foodSquad.SendUnitsCollect();
 
         UpdateUI();
-        Debug.Log("Свободные " + _freeSquad.CountUnit + " На еду " + _foodSquad.CountUnit + " На дерево " + _woodSquad.CountUnit + " На камень " + _stoneSquad.CountUnit);
+        Debug.Log("Freebies " + _freeSquad.CountUnit + " For food " + _foodSquad.CountUnit + " Into the tree " + _woodSquad.CountUnit + " On the rock " + _stoneSquad.CountUnit);
     }
 
-    public void OnSliderChanged(int sliderID) // Вызываем при изменении слайдера и указываем его ID в массиве
+    public void OnSliderChanged(int sliderID) // Call when changing the slider and specify its ID in the array
     {
-        if ((freeUnits + sliders[sliderID].oldValue) - (int)sliders[sliderID].slider.value >= 0) // Вычитаем из текущих юнитов (без учёта текущего слайдера) его новое значение
+        if ((freeUnits + sliders[sliderID].oldValue) - (int)sliders[sliderID].slider.value >= 0) // Subtract its new value from the current units (not including the current slider)
         {
             sliders[sliderID].oldValue = (int)sliders[sliderID].slider.value;
         }
-        else // Если при новом значении слайдера сумма юнитов <0 - отменяем изменение и возвращаем слайдеру старое значение
+        else // If at the new slider value the sum of units <0 - cancel the change and return the slider to the old value
         {
             sliders[sliderID].slider.value = sliders[sliderID].oldValue;
         }
         RecalculateUnits();
-        sliders[sliderID].sliderCountText.text = sliders[sliderID].slider.value.ToString(); // Задаём значение текущего слайдера
+        sliders[sliderID].sliderCountText.text = sliders[sliderID].slider.value.ToString(); // Set the value of the current slider
         UpdateUI();
     }
 
     public void RecalculateUnits()
     {
-        int sum = 0; // Сумма значений всех слайдеров
+        int sum = 0; // Sum of values of all sliders
 
-        foreach(var slider in sliders)
+        foreach (var slider in sliders)
         {
             sum += slider.oldValue;
         }
