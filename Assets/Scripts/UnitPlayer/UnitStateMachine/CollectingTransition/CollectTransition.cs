@@ -23,7 +23,10 @@ public class CollectTransition : Transition
     }
     public override void Exit()
     {
-        StopCoroutine(_coroutine);
+        if (_coroutine != null) // Проверка, что объект существует
+        {
+            StopCoroutine(_coroutine);
+        }
         _unitAnimation.FinishAnimationCollectResources();
     }
 

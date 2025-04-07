@@ -19,9 +19,18 @@ public class ManagementTransition : MonoBehaviour
 
     public void Exit()
     {
-        _moveTransition.Exit();
-        _moveCastleTransition.Exit();
-        _collectTransition.Exit();
+        if (_moveTransition != null)
+        {
+            _moveTransition.Exit();
+        }
+        if (_moveCastleTransition != null)
+        {
+            _moveCastleTransition.Exit();
+        }
+        if (_collectTransition != null)
+        {
+            _collectTransition.Exit();
+        }
     }
 
 }

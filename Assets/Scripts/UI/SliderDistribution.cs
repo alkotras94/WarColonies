@@ -114,7 +114,7 @@ public class SliderDistribution : MonoBehaviour
 
     private void UpdateUI()
     {
-        unitsFreeText.text = "Свободные " + freeUnits.ToString();
-        alUnitsText.text = "Всего рабочих " + allUnits.ToString();
+        unitsFreeText.text = "Free Units " + freeUnits.ToString();
+        alUnitsText.text = "Total count units " + allUnits.ToString();
     }
 }

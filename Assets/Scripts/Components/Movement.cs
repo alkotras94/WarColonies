@@ -23,23 +23,34 @@ public class Movement : MonoBehaviour
 
     public void AddTarget(Vector2 target)
     {
-        _agent.isStopped = false;
+        if (target == null)
+        {
+            throw new NullReferenceException();
+        }
+        else
+        {
+            if (_agent != null)
+            {
+                _agent.isStopped = false;
+            }
 
-        // We find the nearest free point
-        Vector2 adjustedTarget = FindFreePosition(target);
+            // We find the nearest free point
+            Vector2 adjustedTarget = FindFreePosition(target);
 
-        // Setting a new destination
-        _agent.SetDestination(new Vector3(adjustedTarget.x, adjustedTarget.y, transform.position.z));
+            // Setting a new destination
+            _agent.SetDestination(new Vector3(adjustedTarget.x, adjustedTarget.y, transform.position.z));
 
-        // Launching the arrival tracking routine
-        _coroutine = StartCoroutine(CalculateDistance(adjustedTarget));
+            // Launching the arrival tracking routine
+            _coroutine = StartCoroutine(CalculateDistance(adjustedTarget));
 
-        // Turning the unit towards the target
-        _rotation.Rotate(adjustedTarget);
+            // Turning the unit towards the target
+            _rotation.Rotate(adjustedTarget);
 
-        /* _agent.SetDestination(new Vector3(target.x, target.y, transform.position.z));
-        _coroutine = StartCoroutine(CalculateDistance(target));
-        _rotation.Rotate(target);*/
+            /* _agent.SetDestination(new Vector3(target.x, target.y, transform.position.z));
+            _coroutine = StartCoroutine(CalculateDistance(target));
+            _rotation.Rotate(target);*/
+        }
+
     }
     public void StopMovement()
     {

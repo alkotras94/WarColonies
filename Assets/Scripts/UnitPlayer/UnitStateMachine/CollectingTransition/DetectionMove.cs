@@ -20,7 +20,14 @@ public class DetectionMove : MonoBehaviour
 
     public void Disable()
     {
-        _collider.enabled = false;
+        if (_collider != null && _collider.gameObject != null)
+        {
+            _collider.enabled = false;
+        }
+        else
+        {
+            Debug.LogWarning("Attempting to disable a collider that has already been destroyed or not appropriated.");
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)

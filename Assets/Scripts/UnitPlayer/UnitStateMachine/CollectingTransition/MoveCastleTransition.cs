@@ -33,8 +33,16 @@ public class MoveCastleTransition : Transition
 
     public override void Exit()
     {
-        _detectionCastle.Disable();
-        OnExitTrigger();
+        if (_detectionCastle != null && _detectionCastle.gameObject != null)
+        {
+            _detectionCastle.Disable();
+            _detectionCastle.ExitTrigger -= OnExitTrigger;
+        }
+
+        if (_partFood != null) _partFood.SetActive(false);
+        if (_partStone != null) _partStone.SetActive(false);
+        if (_partWood != null) _partWood.SetActive(false);
+        if (_bow != null) _bow.SetActive(true);
     }
 
     public void OnExitTrigger()

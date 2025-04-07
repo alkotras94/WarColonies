@@ -53,6 +53,11 @@ public class UnitStateMachine : MonoBehaviour
         }  
 
         _currentState = _states.FirstOrDefault(state => state is T);
+
+        if (_currentState == null)
+        {
+            return;
+        }
         _currentState.Enter(hitData);
     }
 }

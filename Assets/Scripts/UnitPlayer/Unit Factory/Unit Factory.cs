@@ -5,7 +5,7 @@ using UnityEngine;
 public class UnitFactory : MonoBehaviour
 {
     [SerializeField] private Unit _template;
-    [SerializeField] private Transform _transform;
+    [SerializeField] private List<Transform> _transform;
     [SerializeField] private UnitData _unitData;
 
     public List<Unit> Spawn(int count)
@@ -19,7 +19,7 @@ public class UnitFactory : MonoBehaviour
     }
     public Unit Spawn()
     {
-        Unit unit = Instantiate(_template,_transform);
+        Unit unit = Instantiate(_template, _transform[RandomTransform()]);
         unit.Initialize(_unitData);
         return unit;
     }
@@ -27,5 +27,11 @@ public class UnitFactory : MonoBehaviour
     public void CanSpawn()
     {
             Spawn();
+    }
+
+    private int RandomTransform()
+    {
+        int i = Random.Range(0,_transform.Count);
+        return i;
     }
 }
