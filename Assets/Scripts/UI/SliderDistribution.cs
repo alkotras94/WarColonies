@@ -47,6 +47,11 @@ public class SliderDistribution : MonoBehaviour
         _redeploymentUnit = new RedeploymentUnit();
 
         UpdateSlider();
+
+        foreach (var slider in sliders) 
+        {
+            slider.sliderCountText.text = "0";
+        }
     }
 
     public void UpdateSlider()

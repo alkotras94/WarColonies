@@ -12,6 +12,7 @@ public class FoodStorage : Storage
     {
         _foodModel = new FoodModel();
         _foodModel.Changed += UpdateUI;
+        UpdateUI();
     }
 
     private void UpdateUI()

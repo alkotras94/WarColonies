@@ -11,6 +11,7 @@ public class WoodStorage : Storage
     {
         _woodModel = new WoodModel();
         _woodModel.Changed += UpdateUI;
+        UpdateUI();
     }
 
     private void UpdateUI()

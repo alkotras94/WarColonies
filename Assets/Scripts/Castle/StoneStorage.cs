@@ -12,6 +12,7 @@ public class StoneStorage : Storage, IHitble
     {
         _stoneModel = new StoneModel();
         _stoneModel.Changed += UpdateUI;
+        UpdateUI();
     }
 
     private void UpdateUI()
