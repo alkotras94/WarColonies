@@ -23,5 +23,6 @@ public class WoodStorage : Storage
         if (collision.gameObject.TryGetComponent(out PartWood wood))
         {
             _woodModel.Add(1);
+            QuestManager.instance.AddProgress(QuestType.CollectWood, 1);
         }
     }}
