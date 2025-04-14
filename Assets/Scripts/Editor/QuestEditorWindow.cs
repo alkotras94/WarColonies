@@ -3,7 +3,7 @@ using UnityEditor;
 
 public class QuestEditorWindow : EditorWindow
 {
-    private QuestSO currentQuest;
+    /*private QuestSO currentQuest;
 
     [MenuItem("Tools/Quest Editor")]
     public static void OpenWindow()
@@ -67,5 +67,5 @@ public class QuestEditorWindow : EditorWindow
             AssetDatabase.SaveAssets();
             currentQuest = newQuest;
         }
-    }
+    }*/
 }

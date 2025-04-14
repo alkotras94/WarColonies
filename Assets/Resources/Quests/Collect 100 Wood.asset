@@ -15,7 +15,7 @@ MonoBehaviour:
   questName: Collect 100 wood
   description: Collect resources for Storage
   questType: 0
-  goal: 100
+  goal: 5
   priority: 1
   current: 0
   isCompleted: 0

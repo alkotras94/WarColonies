@@ -15,7 +15,8 @@ MonoBehaviour:
   questName: Collect 100 Stone
   description: Collect stone for Storage
   questType: 1
-  goal: 100
+  goal: 5
+  priority: 0
   current: 0
   isCompleted: 0
   rewardType: 0

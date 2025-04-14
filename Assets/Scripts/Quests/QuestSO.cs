@@ -27,7 +27,7 @@ public class QuestSO : ScriptableObject
     public string description;
     public QuestType questType;
     public int goal;
-    public int priority = 0;
+    public int priority;
     public int current;
     public bool isCompleted;
 

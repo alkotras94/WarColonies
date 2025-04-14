@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using YG;
 
 public class QuestManager : MonoBehaviour
 {
@@ -57,7 +58,7 @@ public class QuestManager : MonoBehaviour
                 quest.CheckComplete();
             }
         }
-
+        YG2.SaveProgress();
         UpdateAllUI();
     }
 
@@ -83,9 +84,13 @@ public class QuestManager : MonoBehaviour
                 break;
         }
 
-        // Тут можно вызывать звук, уведомление и т.п.
+        // Здесь можно вызвать дополнительные эффекты, например, проигрывание звука
         // AudioManager.Play("QuestComplete");
         // NotificationSystem.Show("Квест завершён!");
+
+        // Помечаем квест как завершённый в системе
+        quest.isCompleted = true;
+        //SaveProgress(); // Если используется сохранение прогресса
     }
 
     void UpdateAllUI()

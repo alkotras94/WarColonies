@@ -15,7 +15,7 @@ MonoBehaviour:
   questName: Collect 100 food
   description: Collect food for Storage
   questType: 0
-  goal: 100
+  goal: 5
   priority: 3
   current: 0
   isCompleted: 0
