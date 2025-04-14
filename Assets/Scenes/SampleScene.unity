@@ -2369,7 +2369,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questUIPrefab: {fileID: 5924381267398134704, guid: 21da161b8ad5446bb81927d112867444, type: 3}
   questListParent: {fileID: 2092378192}
-  activeQuests: []
+  activeQuests:
+  - {fileID: 11400000, guid: 106b69303763746188a583f27b9f92f5, type: 2}
+  - {fileID: 11400000, guid: 7b55a4251618145b4b0cf776d2025d8f, type: 2}
+  - {fileID: 11400000, guid: e177b857a4d634d178728273ed9b08f5, type: 2}
 --- !u!4 &377526903
 Transform:
   m_ObjectHideFlags: 0
@@ -8970,7 +8973,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1064395968}
   m_HandleRect: {fileID: 1064395967}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

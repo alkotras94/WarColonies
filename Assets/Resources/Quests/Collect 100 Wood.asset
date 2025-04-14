@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Collect resources for Storage
   questType: 0
   goal: 5
-  priority: 1
+  priority: 3
   current: 0
   isCompleted: 0
   rewardType: 0

@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Collect stone for Storage
   questType: 1
   goal: 5
-  priority: 0
+  priority: 2
   current: 0
   isCompleted: 0
   rewardType: 0

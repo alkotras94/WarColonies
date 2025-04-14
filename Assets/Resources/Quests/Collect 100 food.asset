@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Collect food for Storage
   questType: 0
   goal: 5
-  priority: 3
+  priority: 1
   current: 0
   isCompleted: 0
   rewardType: 0

@@ -7,37 +7,12 @@
         false,
         false
     ],
-    "idSave": 18,
+    "idSave": 7,
     "quests": [
         {
-            "questName": "Collect 100 Stone",
-            "current": 0,
-            "isCompleted": false
-        },
-        {
-            "questName": "Collect 100 wood",
-            "current": 0,
-            "isCompleted": false
-        },
-        {
             "questName": "Collect 100 food",
-            "current": 0,
-            "isCompleted": false
-        },
-        {
-            "questName": "Collect 100 Stone",
-            "current": 0,
-            "isCompleted": false
-        },
-        {
-            "questName": "Collect 100 wood",
-            "current": 4,
-            "isCompleted": false
-        },
-        {
-            "questName": "Collect 100 food",
-            "current": 4,
-            "isCompleted": false
+            "current": 1,
+            "isCompleted": true
         },
         {
             "questName": "Collect 100 Stone",
@@ -46,18 +21,8 @@
         },
         {
             "questName": "Collect 100 Stone",
-            "current": 0,
-            "isCompleted": false
-        },
-        {
-            "questName": "Collect 100 wood",
-            "current": 0,
-            "isCompleted": false
-        },
-        {
-            "questName": "Collect 100 food",
-            "current": 0,
-            "isCompleted": false
+            "current": 5,
+            "isCompleted": true
         }
     ]
 }

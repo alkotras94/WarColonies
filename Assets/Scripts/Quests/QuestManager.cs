@@ -18,8 +18,10 @@ public class QuestManager : MonoBehaviour
 
     private void Start()
     {
-        LoadAllQuestsFromResources();
+        //LoadAllQuestsFromResources();
         CreateQuestUI();
+        YG2.saves.AddQuestData(activeQuests);
+        UpdateAllUI();
     }
 
     void LoadAllQuestsFromResources()
@@ -58,6 +60,7 @@ public class QuestManager : MonoBehaviour
                 quest.CheckComplete();
             }
         }
+        YG2.saves.SaveQuestData(activeQuests);
         YG2.SaveProgress();
         UpdateAllUI();
     }

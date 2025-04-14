@@ -10,63 +10,50 @@ namespace YG
 
         public void AddQuestData(List<QuestSO> activeQuests)
         {
-            // Заполняем список квестами
-            foreach (var quest in activeQuests)
+            if (quests == null || quests.Count == 0)
             {
-                quests.Add(new QuestData
+                // Заполняем список квестами
+                foreach (var quest in activeQuests)
                 {
-                    questName = quest.questName,
-                    current = quest.current,
-                    isCompleted = quest.isCompleted
-                });
+                    quests.Add(new QuestData
+                    {
+                        questName = quest.questName,
+                        current = quest.current,
+                        isCompleted = quest.isCompleted
+                    });
+                }
+
+                Debug.Log($"Данные квестов сохранены");
+            }
+            else
+            {
+                LoadQuestData(activeQuests);
+                Debug.Log("Квесты уже есть");
             }
 
+        }
+
+        public void SaveQuestData(List<QuestSO> activeQuests)
+        {
+            for (int i = 0; i < quests.Count; i++)
+            {
+
+                quests[i].questName = activeQuests[i].questName;
+                quests[i].current = activeQuests[i].current;
+                quests[i].isCompleted = activeQuests[i].isCompleted;
+            }
             Debug.Log($"Данные квестов сохранены");
         }
 
-        public void SyncQuestDataWithDictionary(List<QuestData> target, List<QuestData> source)
-        {
-            // Преобразуем target в словарь для быстрого доступа по questName
-            Dictionary<string, QuestData> targetDict = new Dictionary<string, QuestData>();
-            foreach (var quest in target)
-            {
-                targetDict[quest.questName] = quest; // Если questName одинаковое, обновляем в словаре
-            }
-
-            foreach (var sourceItem in source)
-            {
-                if (targetDict.ContainsKey(sourceItem.questName))
-                {
-                    // Если квест уже есть в target, обновляем его
-                    targetDict[sourceItem.questName].current = sourceItem.current;
-                    targetDict[sourceItem.questName].isCompleted = sourceItem.isCompleted;
-                }
-                else
-                {
-                    // Если квеста нет в target, добавляем новый
-                    targetDict.Add(sourceItem.questName, sourceItem);
-                }
-            }
-
-            // Преобразуем словарь обратно в список
-            target.Clear();
-            target.AddRange(targetDict.Values);
-        }
-
-
         public void LoadQuestData(List<QuestSO> activeQuests)
         {
-                // Обновляем квесты на основе загруженных данных
-                foreach (var questData in quests)
-                {
-                    QuestSO quest = activeQuests.Find(q => q.questName == questData.questName);
-                    if (quest != null)
-                    {
-                        quest.current = questData.current;
-                        quest.isCompleted = questData.isCompleted;
-                    }
-                }
+            for (int i = 0; i < quests.Count; i++)
+            {
 
+                activeQuests[i].questName = quests[i].questName;
+                activeQuests[i].current = quests[i].current;
+                activeQuests[i].isCompleted = quests[i].isCompleted;
+            }
                 Debug.Log($"Данные квестов загружены");
         }
     }
