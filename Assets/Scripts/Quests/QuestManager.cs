@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.IO;
 
 public class QuestManager : MonoBehaviour
 {
@@ -9,77 +8,84 @@ public class QuestManager : MonoBehaviour
     public GameObject questUIPrefab;
     public Transform questListParent;
 
-    public List<QuestSO> questList = new List<QuestSO>(); // Список для хранения всех квестов
-
-    private string saveFilePath;
+    public List<QuestSO> activeQuests = new List<QuestSO>();
 
     private void Awake()
     {
         instance = this;
-        saveFilePath = Application.persistentDataPath + "/quests.json";
     }
 
     private void Start()
     {
-        LoadProgress();  // Загружаем прогресс при старте игры
-        CreateTestQuests(); // Создаем тестовые квесты
+        LoadAllQuestsFromResources();
+        CreateQuestUI();
     }
 
-    void CreateTestQuests()
+    void LoadAllQuestsFromResources()
     {
-        // Добавляем квесты из списка, созданные через Unity Editor
-        foreach (var questSO in questList)
+        QuestSO[] quests = Resources.LoadAll<QuestSO>("Quests");
+
+        activeQuests.Clear();
+
+        foreach (var quest in quests)
         {
-            // Отображаем квесты в UI
+            if (!quest.isCompleted)
+                activeQuests.Add(quest);
+        }
+
+        // Сортируем квесты по приоритету
+        activeQuests.Sort((a, b) => a.priority.CompareTo(b.priority));
+    }
+
+    void CreateQuestUI()
+    {
+        foreach (var quest in activeQuests)
+        {
             GameObject obj = Instantiate(questUIPrefab, questListParent);
             QuestUIItem item = obj.GetComponent<QuestUIItem>();
-            item.Setup(questSO);
+            item.Setup(quest);
         }
     }
 
     public void AddProgress(QuestType type, int amount = 1)
     {
-        foreach (var quest in questList)
+        foreach (var quest in activeQuests)
         {
             if (quest.questType == type && !quest.isCompleted)
             {
                 quest.current += amount;
                 quest.CheckComplete();
-                SaveProgress(); // Сохраняем прогресс после изменения
             }
         }
 
         UpdateAllUI();
     }
 
-    void SaveProgress()
+    public void OnQuestCompleted(QuestSO quest)
     {
-        // Сохраняем все квесты в JSON
-        string json = JsonUtility.ToJson(new QuestList { quests = questList }, true);
-        File.WriteAllText(saveFilePath, json);
-    }
-
-    void LoadProgress()
-    {
-        if (File.Exists(saveFilePath))
+        // Выдача награды
+        switch (quest.rewardType)
         {
-            // Загружаем данные из JSON
-            string json = File.ReadAllText(saveFilePath);
-            QuestList loadedData = JsonUtility.FromJson<QuestList>(json);
-
-            questList = loadedData.quests;
-
-            foreach (var quest in questList)
-            {
-                GameObject obj = Instantiate(questUIPrefab, questListParent);
-                QuestUIItem item = obj.GetComponent<QuestUIItem>();
-                item.Setup(quest);
-            }
+            case RewardType.Gold:
+                Debug.Log($"+{quest.rewardAmount} золота");
+                break;
+            case RewardType.Wood:
+                Debug.Log($"+{quest.rewardAmount} дерева");
+                break;
+            case RewardType.Experience:
+                Debug.Log($"+{quest.rewardAmount} опыта");
+                break;
+            case RewardType.Item:
+                Debug.Log("Игрок получил предмет");
+                break;
+            case RewardType.Custom:
+                Debug.Log("Вызов кастомной награды");
+                break;
         }
-        else
-        {
-            Debug.Log("Сохранений не найдено.");
-        }
+
+        // Тут можно вызывать звук, уведомление и т.п.
+        // AudioManager.Play("QuestComplete");
+        // NotificationSystem.Show("Квест завершён!");
     }
 
     void UpdateAllUI()
@@ -89,10 +95,9 @@ public class QuestManager : MonoBehaviour
             item.UpdateUI();
         }
     }
-}
 
-[System.Serializable]
-public class QuestList
-{
-    public List<QuestSO> quests;
+    public void ClaimQuests()
+    {
+        QuestManager.instance.AddProgress(QuestType.CollectWood, 1);
+    }
 }

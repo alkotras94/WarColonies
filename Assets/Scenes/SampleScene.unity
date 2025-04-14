@@ -2369,8 +2369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questUIPrefab: {fileID: 5924381267398134704, guid: 21da161b8ad5446bb81927d112867444, type: 3}
   questListParent: {fileID: 2092378192}
-  questList:
-  - {fileID: 11400000, guid: 0f2207351d7924d3ca7a71e54b385962, type: 2}
+  activeQuests: []
 --- !u!4 &377526903
 Transform:
   m_ObjectHideFlags: 0
@@ -2607,7 +2606,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.039615165, y: 0.8696967}
   m_AnchorMax: {x: 0.3426152, y: 0.971553}
-  m_AnchoredPosition: {x: -5.1867065, y: 2.1099854}
+  m_AnchoredPosition: {x: -5.1866455, y: 2.1099854}
   m_SizeDelta: {x: -18.373413, y: -23.630981}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &411454865
@@ -2656,7 +2655,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 377526902}
         m_TargetAssemblyTypeName: QuestManager, Assembly-CSharp
-        m_MethodName: OnEnemyKilled
+        m_MethodName: ClaimQuests
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

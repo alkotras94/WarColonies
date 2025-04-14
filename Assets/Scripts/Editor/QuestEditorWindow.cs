@@ -49,7 +49,10 @@ public class QuestEditorWindow : EditorWindow
         quest.questName = EditorGUILayout.TextField("Название", quest.questName);
         quest.description = EditorGUILayout.TextField("Описание", quest.description);
         quest.questType = (QuestType)EditorGUILayout.EnumPopup("Тип квеста", quest.questType);
+        quest.rewardType = (RewardType)EditorGUILayout.EnumPopup("Тип награды", quest.rewardType);
+        quest.rewardAmount = EditorGUILayout.IntField("Кол-во награды", quest.rewardAmount);
         quest.goal = EditorGUILayout.IntField("Цель", quest.goal);
+        quest.priority = EditorGUILayout.IntField("Приоритет (меньше = раньше)", quest.priority);
         quest.current = EditorGUILayout.IntField("Прогресс", quest.current);
         quest.isCompleted = EditorGUILayout.Toggle("Завершён", quest.isCompleted);
     }

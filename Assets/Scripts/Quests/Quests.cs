@@ -1,9 +1,3 @@
-public enum QuestType
-{
-    CollectWood,
-    KillEnemies,
-    UpgradeCastle
-}
 
 [System.Serializable]
 public class Quest
@@ -12,6 +6,7 @@ public class Quest
     public string description;
     public QuestType questType;
     public int goal;
+    public int reward;
     public int current;
     public bool isCompleted;
 
