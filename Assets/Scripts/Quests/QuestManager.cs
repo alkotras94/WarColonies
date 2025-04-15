@@ -44,9 +44,16 @@ public class QuestManager : MonoBehaviour
     {
         foreach (var quest in activeQuests)
         {
-            GameObject obj = Instantiate(questUIPrefab, questListParent);
-            QuestUIItem item = obj.GetComponent<QuestUIItem>();
-            item.Setup(quest);
+            if (quest.isRewardIssued == false)
+            {
+                GameObject obj = Instantiate(questUIPrefab, questListParent);
+                QuestUIItem item = obj.GetComponent<QuestUIItem>();
+                item.Setup(quest);
+            }
+            else
+            {
+                Debug.Log("Reward issued");
+            }
         }
     }
 
@@ -60,9 +67,14 @@ public class QuestManager : MonoBehaviour
                 quest.CheckComplete();
             }
         }
+        Save();
+        UpdateAllUI();
+    }
+
+    public void Save()
+    {
         YG2.saves.SaveQuestData(activeQuests);
         YG2.SaveProgress();
-        UpdateAllUI();
     }
 
     public void OnQuestCompleted(QuestSO quest)

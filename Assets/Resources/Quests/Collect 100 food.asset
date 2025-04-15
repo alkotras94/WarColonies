@@ -19,5 +19,6 @@ MonoBehaviour:
   priority: 1
   current: 0
   isCompleted: 0
+  isRewardIssued: 0
   rewardType: 0
   rewardAmount: 1000

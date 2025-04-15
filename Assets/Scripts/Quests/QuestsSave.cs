@@ -10,20 +10,24 @@ namespace YG
 
         public void AddQuestData(List<QuestSO> activeQuests)
         {
-            if (quests == null || quests.Count == 0)
-            {
-                // Заполняем список квестами
-                foreach (var quest in activeQuests)
-                {
-                    quests.Add(new QuestData
-                    {
-                        questName = quest.questName,
-                        current = quest.current,
-                        isCompleted = quest.isCompleted
-                    });
-                }
+            //quests == null || quests.Count == 0)
 
-                Debug.Log($"Данные квестов сохранены");
+            if (activeQuests.Count > quests.Count )
+            {
+
+                    for (int i = quests.Count; i < activeQuests.Count; i++)
+                    {
+                        quests.Add(new QuestData
+                        {
+                            questName = activeQuests[i].questName,
+                            current = activeQuests[i].current,
+                            isCompleted = activeQuests[i].isCompleted
+                        });
+                    }
+
+
+                Debug.Log($"Данные квестов добавлены");
+                YG2.SaveProgress();
             }
             else
             {
@@ -41,6 +45,7 @@ namespace YG
                 quests[i].questName = activeQuests[i].questName;
                 quests[i].current = activeQuests[i].current;
                 quests[i].isCompleted = activeQuests[i].isCompleted;
+                quests[i].isRewardIssued = activeQuests[i].isRewardIssued;
             }
             Debug.Log($"Данные квестов сохранены");
         }
@@ -53,6 +58,7 @@ namespace YG
                 activeQuests[i].questName = quests[i].questName;
                 activeQuests[i].current = quests[i].current;
                 activeQuests[i].isCompleted = quests[i].isCompleted;
+                activeQuests[i].isRewardIssued = quests[i].isRewardIssued;
             }
                 Debug.Log($"Данные квестов загружены");
         }
@@ -64,5 +70,6 @@ namespace YG
         public string questName;
         public int current;
         public bool isCompleted;
+        public bool isRewardIssued;
     }
 }

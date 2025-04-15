@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using YG;
 
 public class QuestUIItem : MonoBehaviour
 {
@@ -45,8 +46,9 @@ public class QuestUIItem : MonoBehaviour
 
         // Отключаем кнопку награды, как только она была нажата
         rewardButton.interactable = false;
+        quest.isRewardIssued = true;
         gameObject.SetActive(false);  // Скрыть кнопку после получения награды
-
+        QuestManager.instance.Save();
         // Здесь также можно добавить звуковые эффекты или анимации
         // AudioManager.Play("QuestComplete");
         // NotificationSystem.Show("Квест завершён!");

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a4999b82e482424db5adcd6e8f75705, type: 3}
-  m_Name: Collect 100 Wood
+  m_Name: Collect 1000 Food
   m_EditorClassIdentifier: 
-  questName: Collect 100 Stone
-  description: Collect resources for Storage
-  questType: 0
-  goal: 5
-  priority: 3
+  questName: Collect 1000 food
+  description: 
+  questType: 2
+  goal: 1000
+  priority: 0
   current: 0
   isCompleted: 0
   isRewardIssued: 0
   rewardType: 0
-  rewardAmount: 100
+  rewardAmount: 1000

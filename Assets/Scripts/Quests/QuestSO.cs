@@ -30,6 +30,7 @@ public class QuestSO : ScriptableObject
     public int priority;
     public int current;
     public bool isCompleted;
+    public bool isRewardIssued;
 
     [Header("Reward")]
     public RewardType rewardType;
