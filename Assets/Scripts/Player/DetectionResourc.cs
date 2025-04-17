@@ -12,18 +12,28 @@ public class DetectionResourc : MonoBehaviour
     [SerializeField] private TMP_Text _textNameResourc;
     [SerializeField] private TMP_Text _countResourc;
 
+    [SerializeField] private GameObject _popapUIResours;
+    [SerializeField] private Image _spriteResourcPopap;
+    [SerializeField] private TMP_Text _nameResourcPopap;
+
     [SerializeField] private Button _buttonSource;
     [SerializeField] private Button _buttonCollect;
 
+    [SerializeField] private GameObject _partWood;
+    [SerializeField] private GameObject _partStone;
+    [SerializeField] private GameObject _partFood;
+    [SerializeField] private GameObject _bow;
+
     private Collider2D _collider;
     private ResoursView _resoursView;
+    private PlayerStateMachine _playerStateMachine;
 
     private FreeSquad _freeSquad;
     private WoodSquad _woodSquad;
     private StoneSquad _stoneSquad;
     private FoodSquad _foodSquad;
 
-    public void Initialize(FreeSquad freeSquad, WoodSquad woodSquad, StoneSquad stoneSquad, FoodSquad foodSquad)
+    public void Initialize(FreeSquad freeSquad, WoodSquad woodSquad, StoneSquad stoneSquad, FoodSquad foodSquad, PlayerStateMachine playerStateMachine)
     {
         _freeSquad = freeSquad;
         _woodSquad = woodSquad;
@@ -31,6 +41,8 @@ public class DetectionResourc : MonoBehaviour
         _foodSquad = foodSquad;
 
         _collider = GetComponent<Collider2D>();
+
+        _playerStateMachine = playerStateMachine;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -58,6 +70,7 @@ public class DetectionResourc : MonoBehaviour
     {
         Visit(_resoursView);
     }
+
     public void Visit(ResoursView resoursView)
     {
         Debug.Log("Visit");
@@ -87,6 +100,45 @@ public class DetectionResourc : MonoBehaviour
         _spriteResourc.sprite = resours.ResourcesData.SpriteResourc;
         _textNameResourc.text = resours.ResourcesData.NameResourc.ToString();
         _countResourc.text = resours.ResourcesData.CountResources.ToString();
+    }
+
+    public void Collect()
+    {
+        //Hit hit = new Hit(_resoursView.Position, _resoursView, null);
+
+        if (_resoursView is Wood)
+        {
+            Debug.Log("Visit Wood Player");
+            _bow.SetActive(false);
+            _partWood.SetActive(true);
+            _partStone.SetActive(false);
+            _partFood.SetActive(false);
+            _popapUIResours.SetActive(true);
+            _spriteResourcPopap.sprite = _resoursView.ResourcesData.SpriteResourc;
+            _nameResourcPopap.text = "Wood";
+        }
+        if (_resoursView is Stone)
+        {
+            Debug.Log("Visit Stone Player");
+            _bow.SetActive(false);
+            _partWood.SetActive(false);
+            _partStone.SetActive(true);
+            _partFood.SetActive(false);
+            _popapUIResours.SetActive(true);
+            _spriteResourcPopap.sprite = _resoursView.ResourcesData.SpriteResourc;
+            _nameResourcPopap.text = "Stone";
+        }
+        if (_resoursView is Food)
+        {
+            Debug.Log("Visit food Player");
+            _bow.SetActive(false);
+            _partWood.SetActive(false);
+            _partStone.SetActive(false);
+            _partFood.SetActive(true);
+            _popapUIResours.SetActive(true);
+            _spriteResourcPopap.sprite = _resoursView.ResourcesData.SpriteResourc;
+            _nameResourcPopap.text = "Food";
+        }
     }
 
 }

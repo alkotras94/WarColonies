@@ -7,7 +7,7 @@
         false,
         false
     ],
-    "idSave": 220,
+    "idSave": 274,
     "quests": [
         {
             "questName": "Collect 100 food",
@@ -35,7 +35,7 @@
         },
         {
             "questName": "Collect 1000 Wood",
-            "current": 204,
+            "current": 257,
             "isCompleted": false,
             "isRewardIssued": false
         },

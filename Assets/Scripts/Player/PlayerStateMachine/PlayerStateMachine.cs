@@ -7,7 +7,7 @@ public class PlayerStateMachine : MonoBehaviour
     private List<PlayerState> _states;
     private PlayerState _currentState;
 
-    public void Initialize(Movement movement, Health health)
+    public void Initialize(Movement movement, Health health, Player player)
     {
         if (movement == null)
             throw new NullReferenceException();
@@ -19,7 +19,7 @@ public class PlayerStateMachine : MonoBehaviour
         {
             new WaitPlayerState(),
             new MovePlayerState(movement, this),
-            new ColectingPlayerState(),
+            new ColectingPlayerState(player)
         };
     }
 

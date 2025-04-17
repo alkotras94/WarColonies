@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     public void Initialize()
     {
         _health = new Health(_playerData.Health);
-        _stateMachine.Initialize(_movement, _health);
+        _stateMachine.Initialize(_movement, _health, this);
         _playerInput.Initialize(this);
         _movement.Initialize();
 
@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
         FoodSquad = new FoodSquad(_detectionResourc);
 
         _sliderDistribution.Initialize(FreeSquad, WoodSquad, StoneSquad, FoodSquad);
-        _detectionResourc.Initialize(FreeSquad, WoodSquad, StoneSquad, FoodSquad);
+        _detectionResourc.Initialize(FreeSquad, WoodSquad, StoneSquad, FoodSquad, _stateMachine);
 
         _foodStorage.Initialize();
         _woodStorage.Initialize();
