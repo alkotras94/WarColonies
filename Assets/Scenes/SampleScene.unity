@@ -6724,7 +6724,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 87286065}
         m_TargetAssemblyTypeName: DetectionResourc, Assembly-CSharp
-        m_MethodName: Collect
+        m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15337,8 +15337,20 @@ PrefabInstance:
       propertyPath: _sliderDistribution
       value: 
       objectReference: {fileID: 237061661}
+    - target: {fileID: 2433987865410830524, guid: 5cc630be86cc0ba40ae9b01be5ea21e0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3638266432849341092, guid: 5cc630be86cc0ba40ae9b01be5ea21e0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4214721331900034091, guid: 5cc630be86cc0ba40ae9b01be5ea21e0, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885631261341736572, guid: 5cc630be86cc0ba40ae9b01be5ea21e0, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4914324518043162965, guid: 5cc630be86cc0ba40ae9b01be5ea21e0, type: 3}
@@ -15390,6 +15402,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1412785449}
     - target: {fileID: 5201000044529798951, guid: 5cc630be86cc0ba40ae9b01be5ea21e0, type: 3}
+      propertyPath: _partFoodPrefabs
+      value: 
+      objectReference: {fileID: 7933863453964015624, guid: cdaafbf18175444a99c9098dc4d2c4b8, type: 3}
+    - target: {fileID: 5201000044529798951, guid: 5cc630be86cc0ba40ae9b01be5ea21e0, type: 3}
+      propertyPath: _partWoodPrefabs
+      value: 
+      objectReference: {fileID: 2730759673571722319, guid: f5b14185b94c64f94923d6ede7065012, type: 3}
+    - target: {fileID: 5201000044529798951, guid: 5cc630be86cc0ba40ae9b01be5ea21e0, type: 3}
       propertyPath: _textNameResourc
       value: 
       objectReference: {fileID: 718238328}
@@ -15397,6 +15417,10 @@ PrefabInstance:
       propertyPath: _nameResourcPopap
       value: 
       objectReference: {fileID: 764224625}
+    - target: {fileID: 5201000044529798951, guid: 5cc630be86cc0ba40ae9b01be5ea21e0, type: 3}
+      propertyPath: _partStonePrefabs
+      value: 
+      objectReference: {fileID: 8301491747278777578, guid: 8883fe013052b4f4590277f070aefeda, type: 3}
     - target: {fileID: 5201000044529798951, guid: 5cc630be86cc0ba40ae9b01be5ea21e0, type: 3}
       propertyPath: _spriteResourcPopap
       value: 

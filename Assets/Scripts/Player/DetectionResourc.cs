@@ -24,6 +24,10 @@ public class DetectionResourc : MonoBehaviour
     [SerializeField] private GameObject _partFood;
     [SerializeField] private GameObject _bow;
 
+    [SerializeField] private GameObject _partWoodPrefabs;
+    [SerializeField] private GameObject _partStonePrefabs;
+    [SerializeField] private GameObject _partFoodPrefabs;
+
     private Collider2D _collider;
     private ResoursView _resoursView;
     private PlayerStateMachine _playerStateMachine;
@@ -139,6 +143,44 @@ public class DetectionResourc : MonoBehaviour
             _spriteResourcPopap.sprite = _resoursView.ResourcesData.SpriteResourc;
             _nameResourcPopap.text = "Food";
         }
+    }
+
+    public void Quit()
+    {
+        if (_resoursView is Wood)
+        {
+            Debug.Log("Quit Wood Player");
+            _bow.SetActive(true);
+            _partWood.SetActive(false);
+            _partStone.SetActive(false);
+            _partFood.SetActive(false);
+            _popapUIResours.SetActive(false);
+            GameObject obj = Instantiate(_partWoodPrefabs, _partWood.transform.position, Quaternion.identity, null);
+            Destroy(obj, 2f);
+        }
+        if (_resoursView is Stone)
+        {
+            Debug.Log("Quit Stone Player");
+            _bow.SetActive(true);
+            _partWood.SetActive(false);
+            _partStone.SetActive(false);
+            _partFood.SetActive(false);
+            _popapUIResours.SetActive(false);
+            GameObject obj = Instantiate(_partStonePrefabs, _partStone.transform.position, Quaternion.identity, null);
+            Destroy(obj, 2f);
+        }
+        if (_resoursView is Food)
+        {
+            Debug.Log("Quit food Player");
+            _bow.SetActive(true);
+            _partWood.SetActive(false);
+            _partStone.SetActive(false);
+            _partFood.SetActive(false);
+            _popapUIResours.SetActive(false);
+            GameObject obj = Instantiate(_partFoodPrefabs, _partFood.transform.position, Quaternion.identity, null);
+            Destroy(obj, 2f);
+        }
+
     }
 
 }
