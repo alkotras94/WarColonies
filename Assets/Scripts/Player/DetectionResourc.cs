@@ -150,37 +150,34 @@ public class DetectionResourc : MonoBehaviour
         if (_resoursView is Wood)
         {
             Debug.Log("Quit Wood Player");
-            _bow.SetActive(true);
-            _partWood.SetActive(false);
-            _partStone.SetActive(false);
-            _partFood.SetActive(false);
-            _popapUIResours.SetActive(false);
+            DisableObjectPlayer();
             GameObject obj = Instantiate(_partWoodPrefabs, _partWood.transform.position, Quaternion.identity, null);
             Destroy(obj, 2f);
         }
         if (_resoursView is Stone)
         {
             Debug.Log("Quit Stone Player");
-            _bow.SetActive(true);
-            _partWood.SetActive(false);
-            _partStone.SetActive(false);
-            _partFood.SetActive(false);
-            _popapUIResours.SetActive(false);
+            DisableObjectPlayer();
             GameObject obj = Instantiate(_partStonePrefabs, _partStone.transform.position, Quaternion.identity, null);
             Destroy(obj, 2f);
         }
         if (_resoursView is Food)
         {
             Debug.Log("Quit food Player");
-            _bow.SetActive(true);
-            _partWood.SetActive(false);
-            _partStone.SetActive(false);
-            _partFood.SetActive(false);
-            _popapUIResours.SetActive(false);
+            DisableObjectPlayer();
             GameObject obj = Instantiate(_partFoodPrefabs, _partFood.transform.position, Quaternion.identity, null);
             Destroy(obj, 2f);
         }
 
+    }
+
+    private void DisableObjectPlayer()
+    {
+        _bow.SetActive(true);
+        _partWood.SetActive(false);
+        _partStone.SetActive(false);
+        _partFood.SetActive(false);
+        _popapUIResours.SetActive(false);
     }
 
 }
