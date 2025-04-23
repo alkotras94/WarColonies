@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class GoldModel : ResoursModel
 {
-    
+    public GoldModel(uint resours) : base(resours)
+    {
+    }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using YG;
 
 public class StoneStorage : Storage, IHitble
 {
@@ -10,7 +11,7 @@ public class StoneStorage : Storage, IHitble
 
     public void Initialize()
     {
-        _stoneModel = new StoneModel();
+        _stoneModel = new StoneModel(YG2.saves.Stone);
         _stoneModel.Changed += UpdateUI;
         UpdateUI();
     }
@@ -24,12 +25,10 @@ public class StoneStorage : Storage, IHitble
         Debug.Log("The trigger of the stone warehouse");
         if (collision.gameObject.TryGetComponent(out PartStone stone))
         {
-            Debug.Log("Alyandr");
             _stoneModel.Add(1);
-        }
-        else
-        {
-            Debug.Log("Not Alyandr");
+            QuestManager.instance.AddProgress(QuestType.CollectStone, 1);
+            YG2.saves.Stone += 1;
+            YG2.SaveProgress();
         }
     }
 }

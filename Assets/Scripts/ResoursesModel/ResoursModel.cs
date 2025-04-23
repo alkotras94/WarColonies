@@ -6,6 +6,16 @@ public abstract class ResoursModel
 
     public event Action Changed;
 
+    protected ResoursModel(uint resours)
+    {
+        Resours = resours;
+    }
+
+    protected ResoursModel()
+    {
+        Resours = 0;
+    }
+
     public void Add(uint value)
     {
         if (value <= 0)

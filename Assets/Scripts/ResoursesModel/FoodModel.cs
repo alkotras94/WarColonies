@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class FoodModel : ResoursModel
 {
-    
+    public FoodModel(uint resours) : base(resours)
+    {
+    }
 }
