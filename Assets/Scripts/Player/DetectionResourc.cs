@@ -36,13 +36,15 @@ public class DetectionResourc : MonoBehaviour
     private WoodSquad _woodSquad;
     private StoneSquad _stoneSquad;
     private FoodSquad _foodSquad;
+    private ReceptionSquad _receptionSquad;
 
-    public void Initialize(FreeSquad freeSquad, WoodSquad woodSquad, StoneSquad stoneSquad, FoodSquad foodSquad, PlayerStateMachine playerStateMachine)
+    public void Initialize(FreeSquad freeSquad, WoodSquad woodSquad, StoneSquad stoneSquad, FoodSquad foodSquad,ReceptionSquad receptionSquad, PlayerStateMachine playerStateMachine)
     {
         _freeSquad = freeSquad;
         _woodSquad = woodSquad;
         _stoneSquad = stoneSquad;
         _foodSquad = foodSquad;
+        _receptionSquad = receptionSquad;
 
         _collider = GetComponent<Collider2D>();
 

@@ -18,6 +18,9 @@ public class Player : MonoBehaviour
     public WoodSquad WoodSquad { get; private set; }
     public StoneSquad StoneSquad  { get; private set; }
     public FoodSquad FoodSquad { get; private set; }
+    public ReceptionSquad ReceptionSquad { get; private set; }
+
+    [SerializeField] private QuestManager _questManager;
 
     [SerializeField] private FoodStorage _foodStorage;
     [SerializeField] private StoneStorage _stoneStorage;
@@ -43,10 +46,12 @@ public class Player : MonoBehaviour
         WoodSquad = new WoodSquad(_detectionResourc);
         StoneSquad = new StoneSquad(_detectionResourc);
         FoodSquad = new FoodSquad(_detectionResourc);
+        ReceptionSquad = new ReceptionSquad(_detectionResourc);
 
         _sliderDistribution.Initialize(FreeSquad, WoodSquad, StoneSquad, FoodSquad);
-        _detectionResourc.Initialize(FreeSquad, WoodSquad, StoneSquad, FoodSquad, _stateMachine);
+        _detectionResourc.Initialize(FreeSquad, WoodSquad, StoneSquad, FoodSquad, ReceptionSquad, _stateMachine);
 
+        _questManager.Initialize();
         _foodStorage.Initialize();
         _woodStorage.Initialize();
         _stoneStorage.Initialize();

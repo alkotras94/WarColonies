@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using YG;
+using Unity.VisualScripting;
 
 public class QuestManager : MonoBehaviour
 {
@@ -11,9 +12,14 @@ public class QuestManager : MonoBehaviour
 
     public List<QuestSO> activeQuests = new List<QuestSO>();
 
-    private void Awake()
+    public void Initialize()
     {
-        instance = this;
+        if (instance == null)
+            instance = this;
+        else if (instance == this)
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()

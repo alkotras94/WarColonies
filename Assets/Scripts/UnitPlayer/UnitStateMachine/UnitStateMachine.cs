@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UnitStateMachine : MonoBehaviour
@@ -21,7 +23,8 @@ public class UnitStateMachine : MonoBehaviour
             new InitState(initTransition),
             new WaitingState(movement,this),
             new MoveState(movement, this),
-            new CollectionResourcesState(managementTransition)
+            new CollectionResourcesState(managementTransition),
+            new CreateNewUnitState(movement,this),
         };
     }
 
@@ -44,6 +47,11 @@ public class UnitStateMachine : MonoBehaviour
         ChangeState<CollectionResourcesState>(hitData);
     }
 
+    public void CreateNewUnit()
+    {
+        ChangeState<CreateNewUnitState>(null);
+    }
+
     private void ChangeState<T>(Hit hitData) where T : State
     {
 
@@ -60,5 +68,16 @@ public class UnitStateMachine : MonoBehaviour
         }
         _currentState.Enter(hitData);
     }
+
+    public Coroutine StartStaticCoroutine(IEnumerator coroutine) //Запускает для нe Mono объектов
+    {
+        return StartCoroutine(coroutine);
+    }
+
+    public void StopStaticCoroutine(Coroutine coroutine) //Останавливает для нe Mono объектов
+    {
+        StopCoroutine(coroutine);
+    }
+
 }
 
