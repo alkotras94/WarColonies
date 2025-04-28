@@ -7,6 +7,7 @@ public class UnitFactory : MonoBehaviour
     [SerializeField] private Unit _template;
     [SerializeField] private List<Transform> _transform;
     [SerializeField] private UnitData _unitData;
+    [SerializeField] private FoodStorage _foodStorage;
 
     public List<Unit> Spawn(int count)
     {
@@ -20,7 +21,7 @@ public class UnitFactory : MonoBehaviour
     public Unit Spawn()
     {
         Unit unit = Instantiate(_template, _transform[RandomTransform()]);
-        unit.Initialize(_unitData);
+        unit.Initialize(_unitData, _foodStorage);
         return unit;
     }
 

@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
         FoodSquad = new FoodSquad(_detectionResourc);
         ReceptionSquad = new ReceptionSquad(_detectionResourc);
 
-        _sliderDistribution.Initialize(FreeSquad, WoodSquad, StoneSquad, FoodSquad);
+        _sliderDistribution.Initialize(FreeSquad, WoodSquad, StoneSquad, FoodSquad, ReceptionSquad);
         _detectionResourc.Initialize(FreeSquad, WoodSquad, StoneSquad, FoodSquad, ReceptionSquad, _stateMachine);
 
         _questManager.Initialize();

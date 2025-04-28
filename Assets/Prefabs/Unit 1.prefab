@@ -485,6 +485,54 @@ MonoBehaviour:
   _moveTransition: {fileID: 2028410088649455211}
   _collectTransition: {fileID: 5675495730475279967}
   _moveCastleTransition: {fileID: 2545371194261667400}
+--- !u!1 &5231913394047875230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7644562377724736850}
+  - component: {fileID: 5223397972457893214}
+  m_Layer: 0
+  m_Name: PartManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7644562377724736850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5231913394047875230}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6637568036277486205}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5223397972457893214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5231913394047875230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f5388252b56d4243b5c5f332c529c35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _partWood: {fileID: 7879343842795630039}
+  _partStone: {fileID: 7537952017391822027}
+  _partFood: {fileID: 7984454909663821527}
+  _bow: {fileID: 999355240148452577}
 --- !u!1 &6382221159631071192
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,10 +581,7 @@ MonoBehaviour:
   _moveTransition: {fileID: 2028410088649455211}
   _movement: {fileID: 8664529060007307375}
   _detectionCastle: {fileID: 1049226976765184033}
-  _partWood: {fileID: 7879343842795630039}
-  _partStone: {fileID: 7537952017391822027}
-  _partFood: {fileID: 7984454909663821527}
-  _bow: {fileID: 999355240148452577}
+  _partManager: {fileID: 5223397972457893214}
 --- !u!1 &6788799838337880544
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,6 +626,7 @@ Transform:
   - {fileID: 8204244650826822558}
   - {fileID: 7579314554498022909}
   - {fileID: 6709875890741907544}
+  - {fileID: 7644562377724736850}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2537909031704365649
@@ -597,6 +643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _managementTransition: {fileID: 2154439818270679392}
   _initTransition: {fileID: 4234994948173116789}
+  _partManager: {fileID: 5223397972457893214}
 --- !u!114 &8664529060007307375
 MonoBehaviour:
   m_ObjectHideFlags: 0

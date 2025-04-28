@@ -10,7 +10,7 @@ public class UnitStateMachine : MonoBehaviour
     private List<State> _states;
     private State _currentState;
 
-    public void Initialize(Movement movement, Health health, ManagementTransition managementTransition, InitTransition initTransition)
+    public void Initialize(Movement movement, Health health, ManagementTransition managementTransition, InitTransition initTransition, PartManager partManager, FoodStorage foodStorage)
     {
         if (movement == null)
             throw new NullReferenceException();
@@ -24,7 +24,7 @@ public class UnitStateMachine : MonoBehaviour
             new WaitingState(movement,this),
             new MoveState(movement, this),
             new CollectionResourcesState(managementTransition),
-            new CreateNewUnitState(movement,this),
+            new CreateNewUnitState(movement,this,partManager,foodStorage),
         };
     }
 

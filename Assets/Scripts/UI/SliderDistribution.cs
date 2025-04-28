@@ -9,7 +9,7 @@ public class SliderInstance
 {
     public Slider slider; // Slider
     public TMP_Text sliderCountText; // Count display under Slider
-    public int sliderMaxValue = 20; // Max value Slider
+    public int sliderMaxValue; // Max value Slider
     [HideInInspector] public int oldValue = 0; // Value Slider before the change
 }
 
@@ -32,17 +32,20 @@ public class SliderDistribution : MonoBehaviour
     private WoodSquad _woodSquad;
     private StoneSquad _stoneSquad;
     private FoodSquad _foodSquad;
+    private ReceptionSquad _receptionSquad;
 
     public int _saveFood;
     public int _saveWood;
     public int _saveStone;
+    public int _saveReception;
 
-    public void Initialize(FreeSquad freeSquad, WoodSquad woodSquad, StoneSquad stoneSquad, FoodSquad foodSquad )
+    public void Initialize(FreeSquad freeSquad, WoodSquad woodSquad, StoneSquad stoneSquad, FoodSquad foodSquad, ReceptionSquad receptionSquad)
     {
         _freeSquad = freeSquad;
         _woodSquad = woodSquad;
         _stoneSquad = stoneSquad;
         _foodSquad = foodSquad;
+        _receptionSquad = receptionSquad;
 
         _redeploymentUnit = new RedeploymentUnit();
 
@@ -58,12 +61,14 @@ public class SliderDistribution : MonoBehaviour
     {
         allUnits = TotalNumberUnits;
         freeUnits = _freeSquad.CountUnit;
-        TotalNumberUnits = _freeSquad.CountUnit + _woodSquad.CountUnit + _stoneSquad.CountUnit + _foodSquad.CountUnit;
+        TotalNumberUnits = _freeSquad.CountUnit + _woodSquad.CountUnit + _stoneSquad.CountUnit + _foodSquad.CountUnit + _receptionSquad.CountUnit;
 
         foreach (var slider in sliders) // Set all sliders to the max. value of the total number of units
         {
             slider.slider.maxValue = TotalNumberUnits;
         }
+
+        sliders[3].slider.maxValue = 1;
 
         UpdateUI();
     }
@@ -73,6 +78,7 @@ public class SliderDistribution : MonoBehaviour
         _redeploymentUnit.AddFreeList(_saveFood, sliders[0], _freeSquad, _foodSquad);
         _redeploymentUnit.AddFreeList(_saveWood, sliders[1], _freeSquad, _woodSquad);
         _redeploymentUnit.AddFreeList(_saveStone, sliders[2], _freeSquad, _stoneSquad);
+        _redeploymentUnit.AddFreeList(_saveReception, sliders[3], _freeSquad, _receptionSquad);
 
         _redeploymentUnit.Recalculate(_saveFood, sliders[0], _freeSquad, _foodSquad);
         _saveFood = (int)sliders[0].slider.value;
@@ -80,10 +86,13 @@ public class SliderDistribution : MonoBehaviour
         _saveWood = (int)sliders[1].slider.value;
         _redeploymentUnit.Recalculate(_saveStone, sliders[2], _freeSquad, _stoneSquad);
         _saveStone = (int)sliders[2].slider.value;
+        _redeploymentUnit.Recalculate(_saveReception, sliders[3], _freeSquad, _receptionSquad);
+        _saveReception = (int)sliders[3].slider.value;
 
         _woodSquad.SendUnitsCollect();
         _stoneSquad.SendUnitsCollect();
         _foodSquad.SendUnitsCollect();
+        _receptionSquad.CarryFoodReception();
 
         UpdateUI();
         Debug.Log("Freebies " + _freeSquad.CountUnit + " For food " + _foodSquad.CountUnit + " Into the tree " + _woodSquad.CountUnit + " On the rock " + _stoneSquad.CountUnit);

@@ -8,34 +8,41 @@ public class CreateNewUnitState : State
     private Movement _movement;
     private UnitStateMachine _stateMachine;
     private bool _hasFood;
+    private Coroutine _coroutine;
+    private PartManager _partManager;
+    private FoodStorage _foodStorage;
 
-    public CreateNewUnitState(Movement movement, UnitStateMachine stateMachine)
+    public CreateNewUnitState(Movement movement, UnitStateMachine stateMachine, PartManager partManager, FoodStorage foodStorage)
     {
         _movement = movement;
         _stateMachine = stateMachine;
+        _partManager = partManager;
+        _foodStorage = foodStorage;
     }
 
     public override void Enter(Hit hitData)
     {
         Debug.Log("Unit moving food in the reception area");
-        
+        _coroutine = _stateMachine.StartStaticCoroutine(CarryFoodLoop());
     }
 
     public override void Exit()
     {
-        
+        _stateMachine.StopStaticCoroutine(_coroutine);
+        _partManager.GetAxe();
     }
 
     IEnumerator CarryFoodLoop()
     {
-        while (true)
+        while (_foodStorage.FoodModel.Resours > 0)
         {
             // 1. Идём к еде
-            // Идём за едой
             yield return WaitForPoint(() => _movement.AddTarget(ServiceLocator.Instance.StoragePointFood.position));
 
             // 2. Берём еду
             yield return new WaitForSeconds(2);
+            _partManager.GetFood();
+            _foodStorage.FoodModel.Spend(2);
             _hasFood = true;
             Debug.Log("Picked up food!");
 
@@ -44,11 +51,14 @@ public class CreateNewUnitState : State
 
             // 4. Выгружаем
             yield return new WaitForSeconds(2);
+            _partManager.GetAxe();
             _hasFood = false;
             Debug.Log("Dropped food!");
 
             // 5. Повторяем
         }
+
+        _stateMachine.Wait();
     }
 
     private IEnumerator WaitForPoint(System.Action sendTarget)

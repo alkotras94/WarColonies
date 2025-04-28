@@ -7,4 +7,16 @@ public class ReceptionSquad : Squad
     public ReceptionSquad(DetectionResourc detectionResourc) : base(detectionResourc)
     {
     }
+
+    public void CarryFoodReception()
+    {
+        if (UnitList.Count == 0)
+        {
+            Debug.Log("Not unit");
+        }
+        else
+        {
+            UnitList[0].CarryFoodReception();
+        }
+    }
 }

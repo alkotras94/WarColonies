@@ -9,10 +9,7 @@ public class MoveCastleTransition : Transition
     [SerializeField] private Movement _movement;
     [SerializeField] private DetectionCastle _detectionCastle;
 
-    [SerializeField] private GameObject _partWood;
-    [SerializeField] private GameObject _partStone;
-    [SerializeField] private GameObject _partFood;
-    [SerializeField] private GameObject _bow;
+    [SerializeField] private PartManager _partManager;
 
     private Transform _pointStorage;
     private Hit _hitData;
@@ -39,20 +36,14 @@ public class MoveCastleTransition : Transition
             _detectionCastle.ExitTrigger -= OnExitTrigger;
         }
 
-        if (_partFood != null) _partFood.SetActive(false);
-        if (_partStone != null) _partStone.SetActive(false);
-        if (_partWood != null) _partWood.SetActive(false);
-        if (_bow != null) _bow.SetActive(true);
+        _partManager.GetAxe();
     }
 
     public void OnExitTrigger()
     {
         _detectionCastle.ExitTrigger -= OnExitTrigger;
         _moveTransition.Enter(_hitData);
-        _partFood.SetActive(false);
-        _partStone.SetActive(false);
-        _partWood.SetActive(false);
-        _bow.SetActive(true);
+        _partManager.GetAxe();
     }
 
     public void Visit(ResoursView resoursView)
@@ -65,8 +56,7 @@ public class MoveCastleTransition : Transition
     {
         Debug.Log("Visit Wood");
         _pointStorage = ServiceLocator.Instance.StoragePointWood;
-        _bow.SetActive(false);
-        _partWood.SetActive(true);
+        _partManager.GetWood();
         
     }
 
@@ -74,15 +64,13 @@ public class MoveCastleTransition : Transition
     {
         Debug.Log("Visit Stone");
         _pointStorage = ServiceLocator.Instance.StoragePointStone;
-        _bow.SetActive(false);
-        _partStone.SetActive(true);
+        _partManager.GetStone();
     }
 
     public void Visit(Food food)
     {
         Debug.Log("Visit food");
         _pointStorage = ServiceLocator.Instance.StoragePointFood;
-        _bow.SetActive(false);
-        _partFood.SetActive(true);
+        _partManager.GetWood();
     }
 }

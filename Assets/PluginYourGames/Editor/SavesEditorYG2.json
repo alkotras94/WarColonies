@@ -7,7 +7,7 @@
         false,
         false
     ],
-    "idSave": 363,
+    "idSave": 744,
     "quests": [
         {
             "questName": "Collect 100 food",
@@ -17,9 +17,9 @@
         },
         {
             "questName": "Collect 100 Stone",
-            "current": 1,
-            "isCompleted": false,
-            "isRewardIssued": false
+            "current": 5,
+            "isCompleted": true,
+            "isRewardIssued": true
         },
         {
             "questName": "Collect 100 Stone",
@@ -29,19 +29,19 @@
         },
         {
             "questName": "Collect 1000 stone",
-            "current": 1,
+            "current": 154,
             "isCompleted": false,
             "isRewardIssued": false
         },
         {
             "questName": "Collect 1000 Wood",
-            "current": 329,
+            "current": 330,
             "isCompleted": false,
             "isRewardIssued": false
         },
         {
             "questName": "Collect 1000 food",
-            "current": 1,
+            "current": 37,
             "isCompleted": false,
             "isRewardIssued": false
         },
@@ -58,8 +58,8 @@
             "isRewardIssued": true
         }
     ],
-    "Wood": 10,
-    "Stone": 1,
-    "Food": 1,
+    "Wood": 11,
+    "Stone": 154,
+    "Food": 37,
     "Gold": 0
 }
