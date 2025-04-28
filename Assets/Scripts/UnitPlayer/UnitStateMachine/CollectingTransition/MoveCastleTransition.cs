@@ -71,6 +71,6 @@ public class MoveCastleTransition : Transition
     {
         Debug.Log("Visit food");
         _pointStorage = ServiceLocator.Instance.StoragePointFood;
-        _partManager.GetWood();
+        _partManager.GetFood();
     }
 }
