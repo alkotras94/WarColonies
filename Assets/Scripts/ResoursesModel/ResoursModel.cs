@@ -5,6 +5,8 @@ public abstract class ResoursModel
     public uint Resours { get; private set; }
 
     public event Action Changed;
+    public event Action FoodShoved;
+    public bool NoFood;
 
     protected ResoursModel(uint resours)
     {
@@ -24,6 +26,9 @@ public abstract class ResoursModel
         Resours += value;
 
         Changed?.Invoke();
+
+        if (Resours == 1)
+            FoodShoved?.Invoke();
     }
 
     public void Spend(uint value)

@@ -17,6 +17,7 @@ public class ReceptionSquad : Squad
         else
         {
             UnitList[0].CarryFoodReception();
+            Debug.Log("Idle unit food");
         }
     }
 }

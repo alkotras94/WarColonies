@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
         FoodSquad = new FoodSquad(_detectionResourc);
         ReceptionSquad = new ReceptionSquad(_detectionResourc);
 
+
         _sliderDistribution.Initialize(FreeSquad, WoodSquad, StoneSquad, FoodSquad, ReceptionSquad);
         _detectionResourc.Initialize(FreeSquad, WoodSquad, StoneSquad, FoodSquad, ReceptionSquad, _stateMachine);
 
@@ -55,6 +56,8 @@ public class Player : MonoBehaviour
         _foodStorage.Initialize();
         _woodStorage.Initialize();
         _stoneStorage.Initialize();
+
+        _foodStorage.FoodModel.FoodShoved += FoodShoved;
     }
 
     public void TransferStateMachine(Hit hit)
@@ -68,5 +71,15 @@ public class Player : MonoBehaviour
         FreeSquad.Add(unit);
         //FreeSquad.AddTarget(vector);
         _sliderDistribution.UpdateSlider();
+    }
+
+    public void FoodShoved()
+    {
+        ReceptionSquad.CarryFoodReception();
+    }
+
+    private void OnDisable()
+    {
+        _foodStorage.FoodModel.FoodShoved -= FoodShoved;
     }
 }

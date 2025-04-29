@@ -28,7 +28,10 @@ public class CreateNewUnitState : State
 
     public override void Exit()
     {
-        _stateMachine.StopStaticCoroutine(_coroutine);
+        if (_coroutine != null)
+        {
+            _stateMachine.StopStaticCoroutine(_coroutine);
+        }
         _partManager.GetAxe();
     }
 
