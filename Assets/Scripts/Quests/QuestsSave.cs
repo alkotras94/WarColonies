@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+//Реализация сохранений для Яндекс Игр
 namespace YG
 {
     public partial class SavesYG

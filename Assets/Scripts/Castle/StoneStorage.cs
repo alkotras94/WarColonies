@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using YG;
+//using YG;
 
 public class StoneStorage : Storage, IHitble
 {
@@ -11,7 +11,7 @@ public class StoneStorage : Storage, IHitble
 
     public void Initialize()
     {
-        _stoneModel = new StoneModel(YG2.saves.Stone);
+        _stoneModel = new StoneModel(0);
         _stoneModel.Changed += UpdateUI;
         UpdateUI();
     }
@@ -27,8 +27,8 @@ public class StoneStorage : Storage, IHitble
         {
             _stoneModel.Add(1);
             QuestManager.instance.AddProgress(QuestType.CollectStone, 1);
-            YG2.saves.Stone += 1;
-            YG2.SaveProgress();
+            //YG2.saves.Stone += 1;
+            //YG2.SaveProgress();
         }
     }
 }

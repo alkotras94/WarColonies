@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using YG;
-using Unity.VisualScripting;
+//using YG;
 
 public class QuestManager : MonoBehaviour
 {
@@ -10,7 +9,7 @@ public class QuestManager : MonoBehaviour
     public GameObject questUIPrefab;
     public Transform questListParent;
 
-    public List<QuestSO> activeQuests = new List<QuestSO>();
+    public List<QuestSO> activeQuests = new List<QuestSO>(); //Сюда методом DragAndDrop я переношу квесты
 
     public void Initialize()
     {
@@ -20,30 +19,36 @@ public class QuestManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
-    }
 
-    private void Start()
-    {
-        //LoadAllQuestsFromResources();
+        LoadAllQuests();
         CreateQuestUI();
-        YG2.saves.AddQuestData(activeQuests);
+        //YG2.saves.AddQuestData(activeQuests);
         UpdateAllUI();
     }
 
-    void LoadAllQuestsFromResources()
+    private void LoadAllQuests()
     {
-        QuestSO[] quests = Resources.LoadAll<QuestSO>("Quests");
+        GameProgress progress = SaveManager.LoadGameQuests();
 
-        activeQuests.Clear();
-
-        foreach (var quest in quests)
+        foreach (QuestSO quest in activeQuests)
         {
-            if (!quest.isCompleted)
-                activeQuests.Add(quest);
+            QuestData saved = progress.activeQuests.Find(q => q.questName == quest.questName);
+
+            if (saved != null)
+            {
+                quest.current = saved.currentProgress;
+                quest.isCompleted = saved.isCompleted;
+                quest.isRewardIssued = saved.isRewardIssued;
+            }
+            else
+            {
+                quest.current = 0;
+                quest.isCompleted = false;
+                quest.isRewardIssued = false;
+            }
         }
 
-        // Сортируем квесты по приоритету
-        activeQuests.Sort((a, b) => a.priority.CompareTo(b.priority));
+        Debug.Log("Save path: " + Application.persistentDataPath);
     }
 
     void CreateQuestUI()
@@ -79,8 +84,26 @@ public class QuestManager : MonoBehaviour
 
     public void Save()
     {
-        YG2.saves.SaveQuestData(activeQuests);
-        YG2.SaveProgress();
+        GameProgress progress = new GameProgress();
+
+        foreach (var quest in activeQuests)
+        {
+            progress.activeQuests.Add(new QuestData
+            {
+                questName = quest.questName,
+                currentProgress = quest.current,
+                isCompleted = quest.isCompleted,
+                isRewardIssued = quest.isRewardIssued
+            });
+        }
+
+        SaveManager.SaveGameQuests(progress);
+    }
+
+    public void SaveYG()
+    {
+        //YG2.saves.SaveQuestData(activeQuests);
+        //YG2.SaveProgress();
     }
 
     public void OnQuestCompleted(QuestSO quest)
@@ -111,6 +134,8 @@ public class QuestManager : MonoBehaviour
 
         // Помечаем квест как завершённый в системе
         quest.isCompleted = true;
+        Save();
+        UpdateAllUI();
         //SaveProgress(); // Если используется сохранение прогресса
     }
 
@@ -125,5 +150,10 @@ public class QuestManager : MonoBehaviour
     public void ClaimQuests()
     {
         QuestManager.instance.AddProgress(QuestType.CollectWood, 1);
+    }
+
+    public void ResetSaveQuests()
+    {
+        SaveManager.ResetSaveQuests();
     }
 }

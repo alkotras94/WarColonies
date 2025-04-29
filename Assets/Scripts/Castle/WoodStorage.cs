@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using YG;
+//using YG;
 
 public class WoodStorage : Storage
 {    private WoodModel _woodModel;
@@ -10,7 +10,7 @@ public class WoodStorage : Storage
 
     public void Initialize()
     {
-        _woodModel = new WoodModel(YG2.saves.Wood);
+        _woodModel = new WoodModel(0);
         _woodModel.Changed += UpdateUI;
         UpdateUI();
     }
@@ -25,7 +25,7 @@ public class WoodStorage : Storage
         {
             _woodModel.Add(1);
             QuestManager.instance.AddProgress(QuestType.CollectWood, 1);
-            YG2.saves.Wood += 1;
-            YG2.SaveProgress();
+            //YG2.saves.Wood += 1;
+            //YG2.SaveProgress();
         }
     }}

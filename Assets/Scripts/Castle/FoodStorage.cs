@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using YG;
+//using YG;
 
 public class FoodStorage : Storage
 {
@@ -11,7 +11,7 @@ public class FoodStorage : Storage
 
     public void Initialize()
     {
-        FoodModel = new FoodModel(YG2.saves.Food);
+        FoodModel = new FoodModel(0);
         FoodModel.Changed += UpdateUI;
         UpdateUI();
     }
@@ -27,8 +27,8 @@ public class FoodStorage : Storage
         {
             FoodModel.Add(1);
             QuestManager.instance.AddProgress(QuestType.CollectFood, 1);
-            YG2.saves.Food += 1;
-            YG2.SaveProgress();
+            //YG2.saves.Food += 1;
+            //YG2.SaveProgress();
         }
     }
 }
