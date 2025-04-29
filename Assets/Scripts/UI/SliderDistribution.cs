@@ -75,19 +75,10 @@ public class SliderDistribution : MonoBehaviour
 
     public void AssignUnits()
     {
-        _redeploymentUnit.AddFreeList(_saveFood, sliders[0], _freeSquad, _foodSquad);
-        _redeploymentUnit.AddFreeList(_saveWood, sliders[1], _freeSquad, _woodSquad);
-        _redeploymentUnit.AddFreeList(_saveStone, sliders[2], _freeSquad, _stoneSquad);
-        _redeploymentUnit.AddFreeList(_saveReception, sliders[3], _freeSquad, _receptionSquad);
-
-        _redeploymentUnit.Recalculate(_saveFood, sliders[0], _freeSquad, _foodSquad);
-        _saveFood = (int)sliders[0].slider.value;
-        _redeploymentUnit.Recalculate(_saveWood, sliders[1], _freeSquad, _woodSquad);
-        _saveWood = (int)sliders[1].slider.value;
-        _redeploymentUnit.Recalculate(_saveStone, sliders[2], _freeSquad, _stoneSquad);
-        _saveStone = (int)sliders[2].slider.value;
-        _redeploymentUnit.Recalculate(_saveReception, sliders[3], _freeSquad, _receptionSquad);
-        _saveReception = (int)sliders[3].slider.value;
+        _redeploymentUnit.Redistribute(sliders[0], _freeSquad, _foodSquad, ref _saveFood);
+        _redeploymentUnit.Redistribute(sliders[1], _freeSquad, _woodSquad, ref _saveWood);
+        _redeploymentUnit.Redistribute(sliders[2], _freeSquad, _stoneSquad, ref _saveStone);
+        _redeploymentUnit.Redistribute(sliders[3], _freeSquad, _receptionSquad, ref _saveReception);
 
         _woodSquad.SendUnitsCollect();
         _stoneSquad.SendUnitsCollect();
@@ -95,7 +86,34 @@ public class SliderDistribution : MonoBehaviour
         _receptionSquad.CarryFoodReception();
 
         UpdateUI();
-        Debug.Log("Freebies " + _freeSquad.CountUnit + " For food " + _foodSquad.CountUnit + " Into the tree " + _woodSquad.CountUnit + " On the rock " + _stoneSquad.CountUnit);
+
+        Debug.Log("Freebies " + _freeSquad.CountUnit +
+                  " | Food " + _foodSquad.CountUnit +
+                  " | Wood " + _woodSquad.CountUnit +
+                  " | Stone " + _stoneSquad.CountUnit +
+                  " | Reception " + _receptionSquad.CountUnit);
+
+        /*_redeploymentUnit.AddFreeList(_saveFood, sliders[0], _freeSquad, _foodSquad);
+        _redeploymentUnit.AddFreeList(_saveWood, sliders[1], _freeSquad, _woodSquad);
+        _redeploymentUnit.AddFreeList(_saveStone, sliders[2], _freeSquad, _stoneSquad);
+        _redeploymentUnit.AddFreeList(_saveReception, sliders[3], _freeSquad, _receptionSquad);*/
+
+        /*_redeploymentUnit.Recalculate(_saveFood, sliders[0], _freeSquad, _foodSquad);
+        _saveFood = (int)sliders[0].slider.value;
+        _redeploymentUnit.Recalculate(_saveWood, sliders[1], _freeSquad, _woodSquad);
+        _saveWood = (int)sliders[1].slider.value;
+        _redeploymentUnit.Recalculate(_saveStone, sliders[2], _freeSquad, _stoneSquad);
+        _saveStone = (int)sliders[2].slider.value;
+        _redeploymentUnit.Recalculate(_saveReception, sliders[3], _freeSquad, _receptionSquad);
+        _saveReception = (int)sliders[3].slider.value;*/
+
+        /*_woodSquad.SendUnitsCollect();
+        _stoneSquad.SendUnitsCollect();
+        _foodSquad.SendUnitsCollect();
+        _receptionSquad.CarryFoodReception();
+
+        UpdateUI();
+        Debug.Log("Freebies " + _freeSquad.CountUnit + " For food " + _foodSquad.CountUnit + " Into the tree " + _woodSquad.CountUnit + " On the rock " + _stoneSquad.CountUnit);*/
     }
 
     public void OnSliderChanged(int sliderID) // Call when changing the slider and specify its ID in the array
