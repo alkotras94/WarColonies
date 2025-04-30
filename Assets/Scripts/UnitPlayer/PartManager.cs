@@ -7,6 +7,7 @@ public class PartManager : MonoBehaviour
     [SerializeField] private GameObject _partWood;
     [SerializeField] private GameObject _partStone;
     [SerializeField] private GameObject _partFood;
+    [SerializeField] private GameObject _partProcessedFood;
     [SerializeField] private GameObject _bow;
 
     public void GetAxe()
@@ -15,6 +16,7 @@ public class PartManager : MonoBehaviour
         _partFood.SetActive(false);
         _partWood.SetActive(false);
         _partStone.SetActive(false);
+        _partProcessedFood.SetActive(false);
     }
 
     public void GetFood()
@@ -23,6 +25,16 @@ public class PartManager : MonoBehaviour
         _partFood.SetActive(true);
         _partWood.SetActive(false);
         _partStone.SetActive(false);
+        _partProcessedFood.SetActive(false);
+    }
+
+    public void GetProcessedFood()
+    {
+        _bow.SetActive(false);
+        _partFood.SetActive(false);
+        _partWood.SetActive(false);
+        _partStone.SetActive(false);
+        _partProcessedFood.SetActive(true);
     }
 
     public void GetWood()
@@ -31,6 +43,7 @@ public class PartManager : MonoBehaviour
         _partFood.SetActive(false);
         _partWood.SetActive(true);
         _partStone.SetActive(false);
+        _partProcessedFood.SetActive(false);
     }
 
     public void GetStone()
@@ -39,5 +52,6 @@ public class PartManager : MonoBehaviour
         _partFood.SetActive(false);
         _partWood.SetActive(false);
         _partStone.SetActive(true);
+        _partProcessedFood.SetActive(false);
     }
 }

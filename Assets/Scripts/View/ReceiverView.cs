@@ -8,7 +8,7 @@ public class ReceiverView : MonoBehaviour, IHitble
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out PartFood food))
+        if (collision.gameObject.TryGetComponent(out PartProcessedFood food))
         {
             _unitfactory.CanSpawn();
         }

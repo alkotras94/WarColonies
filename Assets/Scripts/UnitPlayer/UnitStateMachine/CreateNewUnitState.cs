@@ -44,8 +44,8 @@ public class CreateNewUnitState : State
 
             // 2. Берём еду
             yield return new WaitForSeconds(2);
-            _partManager.GetFood();
-            _foodStorage.FoodModel.Spend(2);
+            _partManager.GetProcessedFood();
+            _foodStorage.FoodModel.Spend(1);
             _hasFood = true;
             Debug.Log("Picked up food!");
 
